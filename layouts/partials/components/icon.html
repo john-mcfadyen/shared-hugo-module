@@ -1,0 +1,32 @@
+{{- /*
+  SVG Icon Loader Partial
+
+  Usage: {{ partial "components/icon.html" (dict "name" "icon-name" "class" "optional-class") }}
+
+  Parameters:
+    - name: Icon filename (without .svg extension). Strips "fa-" prefix if present.
+    - class: Optional CSS class(es) to add to the SVG
+
+  Expects SVG files in assets/icons/ directory.
+
+  Example:
+  {{ partial "components/icon.html" (dict "name" "chevron-left" "class" "nav-icon") }}
+*/ -}}
+{{- $rawName := .name -}}
+{{- $class := .class | default "" -}}
+
+{{- /* Strip "fa-" prefix if present for compatibility */ -}}
+{{- $fileName := replace $rawName "fa-" "" -}}
+
+{{- /* Find the SVG file in assets/icons/ */ -}}
+{{- $icon := resources.Get (printf "icons/%s.svg" $fileName) -}}
+
+{{- if $icon -}}
+  {{- $content := $icon.Content -}}
+  {{- /* Inject class and aria-hidden attributes */ -}}
+  {{- $newAttributes := printf "<svg class=\"%s\" aria-hidden=\"true\"" $class -}}
+  {{- $finalSvg := replace $content "<svg" $newAttributes 1 -}}
+  {{- $finalSvg | safeHTML -}}
+{{- else -}}
+  {{- warnf "icon: Could not find 'assets/icons/%s.svg'" $fileName -}}
+{{- end -}}

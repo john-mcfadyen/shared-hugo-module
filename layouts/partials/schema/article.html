@@ -1,0 +1,78 @@
+{{- /*
+  Article/BlogPosting Schema Partial
+
+  Usage: {{ partial "schema/article.html" . }}
+
+  Uses page context (.) to extract:
+    - .Title
+    - .Description / .Summary
+    - .Date / .Lastmod
+    - .Params.image
+    - .Params.keywords
+    - .Params.categories
+    - .WordCount
+
+  Required site params:
+    - .Site.Title
+    - .Site.BaseURL
+    - .Site.Params.author
+
+  Optional site params:
+    - .Site.Params.logo
+    - .Site.Params.linkedin (for author URL)
+    - .Site.Params.defaultOgImage
+*/ -}}
+{{- $author := .Site.Params.author -}}
+{{- $datePublished := .Date.Format "2006-01-02T15:04:05Z07:00" -}}
+{{- $dateModified := .Lastmod.Format "2006-01-02T15:04:05Z07:00" -}}
+{{- $description := .Description | default .Summary | plainify | truncate 160 -}}
+{{- $defaultImage := .Site.Params.defaultOgImage | default (printf "%sog-image.png" .Site.BaseURL) -}}
+{{- $image := .Params.image | default $defaultImage -}}
+{{- if and $image (not (hasPrefix $image "http")) -}}
+  {{- $image = printf "%s%s" .Site.BaseURL (strings.TrimPrefix "/" $image) -}}
+{{- end -}}
+{{- $wordCount := .WordCount -}}
+{{- $readingTime := div $wordCount 200 | default 1 -}}
+{{- $logo := .Site.Params.logo | default "logo.png" -}}
+{{- if not (hasPrefix $logo "http") -}}
+  {{- $logo = printf "%s%s" .Site.BaseURL (strings.TrimPrefix "/" $logo) -}}
+{{- end -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{ .Title }}",
+  "description": "{{ $description }}",
+  "image": "{{ $image }}",
+  "datePublished": "{{ $datePublished }}",
+  "dateModified": "{{ $dateModified }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ $author }}"
+    {{- with .Site.Params.linkedin }},
+    "url": "{{ . }}"
+    {{- end }}
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ .Site.Title }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ $logo }}"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ .Permalink }}"
+  },
+  "url": "{{ .Permalink }}",
+  "wordCount": {{ $wordCount }},
+  "timeRequired": "PT{{ $readingTime }}M"
+  {{- with .Params.keywords }},
+  "keywords": [{{ range $i, $k := . }}{{ if $i }}, {{ end }}"{{ $k }}"{{ end }}]
+  {{- end }}
+  {{- with .Params.categories }},
+  "articleSection": [{{ range $i, $c := . }}{{ if $i }}, {{ end }}"{{ $c }}"{{ end }}]
+  {{- end }}
+}
+</script>

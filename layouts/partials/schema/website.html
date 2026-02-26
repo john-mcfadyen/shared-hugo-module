@@ -1,0 +1,32 @@
+{{- /*
+  WebSite Schema Partial
+
+  Usage: {{ partial "schema/website.html" . }}
+
+  Required site params:
+    - .Site.Title
+    - .Site.BaseURL
+    - .Site.Params.description
+
+  Optional site params:
+    - .Site.Params.searchPath (defaults to "search")
+*/ -}}
+{{- $searchPath := .Site.Params.searchPath | default "search" -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ .Site.Title }}",
+  "url": "{{ .Site.BaseURL }}",
+  "description": "{{ .Site.Params.description }}",
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ .Site.Title }}"
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ .Site.BaseURL }}{{ $searchPath }}?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>

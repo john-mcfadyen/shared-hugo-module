@@ -1,0 +1,37 @@
+# Network Sites Registry
+# Used by network-link shortcode and cross-site linking features
+#
+# Usage in content:
+#   {{< network-link site="gsm" >}}Growing Scrum Masters{{< /network-link >}}
+#   {{< network-link site="daily-agile" path="/blog/article" >}}Read more{{< /network-link >}}
+
+sites:
+  gsm:
+    name: "Growing Scrum Masters"
+    url: "https://www.growingscrummasters.com"
+    description: "Master the art of the Scrum Master role with deep-dive Agile leadership content"
+    author: "John McFadyen"
+
+  daily-agile:
+    name: "Daily Agile"
+    url: "https://daily-agile.com"
+    description: "Reflections for Modern Teams"
+    author: "John McFadyen"
+
+  johnmcfadyen:
+    name: "John McFadyen"
+    url: "https://www.johnmcfadyen.com"
+    description: "Strategic Advisor for Higher Education IT"
+    author: "John McFadyen"
+
+  stoic-agile:
+    name: "Unleashing the Power of Stoic Agile"
+    url: "https://unleashingthepowerofstoicagile.com"
+    description: "Integrating ancient Stoic wisdom with modern Agile practices"
+    author: "John McFadyen"
+
+# Common social links (can be referenced across sites)
+social:
+  linkedin: "https://www.linkedin.com/in/johnmcfadyen/"
+  youtube: "https://www.youtube.com/@GrowingScrumMasters"
+  tiktok: "https://www.tiktok.com/@growingscrummasters"

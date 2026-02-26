@@ -1,0 +1,57 @@
+{{- /*
+  JavaScript Loader Partial
+
+  Usage: {{ partial "utils/js-loader.html" (dict "context" . "files" (slice "js/main.js")) }}
+
+  Parameters (passed as dict):
+    - context: Page context (required)
+    - files: Array of JS files to load from assets/ (required)
+    - concat: Output filename for concatenated bundle (optional, defaults to "js/bundle.js")
+    - defer: Add defer attribute (optional, defaults to true)
+    - async: Add async attribute (optional, defaults to false)
+    - module: Add type="module" attribute (optional, defaults to false)
+
+  In development mode: Outputs non-minified JS for easier debugging
+  In production mode: Concatenates, minifies, and fingerprints JS
+
+  Example with multiple files:
+  {{ partial "utils/js-loader.html" (dict "context" . "files" (slice "js/nav.js" "js/main.js") "concat" "js/site.js") }}
+
+  Example ES module:
+  {{ partial "utils/js-loader.html" (dict "context" . "files" (slice "js/app.js") "module" true) }}
+*/ -}}
+{{- $context := .context -}}
+{{- $files := .files -}}
+{{- $concatName := .concat | default "js/bundle.js" -}}
+{{- $defer := .defer | default true -}}
+{{- $async := .async | default false -}}
+{{- $module := .module | default false -}}
+
+{{- $resources := slice -}}
+{{- range $files -}}
+  {{- $res := resources.Get . -}}
+  {{- if $res -}}
+    {{- $resources = $resources | append $res -}}
+  {{- else -}}
+    {{- warnf "js-loader: Could not find '%s' in assets/" . -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* Build attributes string */ -}}
+{{- $attrs := "" -}}
+{{- if $defer }}{{ $attrs = printf "%s defer" $attrs }}{{ end -}}
+{{- if $async }}{{ $attrs = printf "%s async" $attrs }}{{ end -}}
+{{- if $module }}{{ $attrs = printf "%s type=\"module\"" $attrs }}{{ end -}}
+
+{{- if $resources -}}
+  {{- if eq hugo.Environment "development" -}}
+    {{- /* Development: Load files individually without processing */ -}}
+    {{- range $resources -}}
+<script src="{{ .RelPermalink }}"{{ $attrs | safeHTMLAttr }}></script>
+    {{- end -}}
+  {{- else -}}
+    {{- /* Production: Bundle, minify, fingerprint */ -}}
+    {{- $bundle := $resources | resources.Concat $concatName | minify | fingerprint -}}
+<script src="{{ $bundle.RelPermalink }}" integrity="{{ $bundle.Data.Integrity }}" crossorigin="anonymous"{{ $attrs | safeHTMLAttr }}></script>
+  {{- end -}}
+{{- end -}}

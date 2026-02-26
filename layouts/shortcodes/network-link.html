@@ -1,0 +1,56 @@
+{{- /*
+  Network Link Shortcode
+
+  Creates links to other sites in the network using data/network-sites.yaml
+
+  Usage:
+    {{< network-link site="gsm" >}}Visit Growing Scrum Masters{{< /network-link >}}
+    {{< network-link site="gsm" path="/blog/scrum-values" >}}Read about Scrum Values{{< /network-link >}}
+    {{< network-link site="daily-agile" class="button is-primary" >}}Daily Agile{{< /network-link >}}
+
+  Parameters:
+    - site: Site key from network-sites.yaml (required)
+    - path: Path to append to site URL (optional)
+    - class: CSS class(es) for the link (optional)
+    - target: Link target (optional, defaults to "_blank" for external)
+    - rel: Link rel attribute (optional, defaults to "noopener")
+
+  Requires data/network-sites.yaml with structure:
+    sites:
+      gsm:
+        name: "Growing Scrum Masters"
+        url: "https://www.growingscrummasters.com"
+      daily-agile:
+        name: "Daily Agile"
+        url: "https://daily-agile.com"
+*/ -}}
+{{- $siteKey := .Get "site" -}}
+{{- $path := .Get "path" | default "" -}}
+{{- $class := .Get "class" | default "" -}}
+{{- $target := .Get "target" | default "_blank" -}}
+{{- $rel := .Get "rel" | default "noopener" -}}
+
+{{- $networkSites := site.Data.networkSites.sites -}}
+{{- if not $networkSites -}}
+  {{- $networkSites = site.Data.network_sites.sites -}}
+{{- end -}}
+
+{{- if $networkSites -}}
+  {{- $targetSite := index $networkSites $siteKey -}}
+  {{- if $targetSite -}}
+    {{- $url := $targetSite.url -}}
+    {{- /* Ensure URL ends with / before appending path */ -}}
+    {{- if not (hasSuffix $url "/") -}}
+      {{- $url = printf "%s/" $url -}}
+    {{- end -}}
+    {{- /* Append path, stripping leading slash to avoid double slash */ -}}
+    {{- $fullUrl := printf "%s%s" $url (strings.TrimPrefix "/" $path) -}}
+<a href="{{ $fullUrl }}"{{ with $class }} class="{{ . }}"{{ end }}{{ with $target }} target="{{ . }}"{{ end }}{{ with $rel }} rel="{{ . }}"{{ end }}>{{ .Inner | default $targetSite.name }}</a>
+  {{- else -}}
+    {{- warnf "network-link: Site '%s' not found in network-sites data" $siteKey -}}
+    <span class="network-link-error">[Unknown site: {{ $siteKey }}]</span>
+  {{- end -}}
+{{- else -}}
+  {{- warnf "network-link: data/network-sites.yaml not found or empty" -}}
+  <span class="network-link-error">[Network sites data not found]</span>
+{{- end -}}

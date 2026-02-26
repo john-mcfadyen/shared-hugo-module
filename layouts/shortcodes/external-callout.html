@@ -1,0 +1,59 @@
+{{- /*
+  External Callout Shortcode
+
+  Creates styled callout boxes for tips, warnings, notes, etc.
+
+  Usage:
+    {{< external-callout type="tip" >}}
+    Here's a helpful tip for you!
+    {{< /external-callout >}}
+
+    {{< external-callout type="warning" title="Caution" >}}
+    Be careful with this approach.
+    {{< /external-callout >}}
+
+  Parameters:
+    - type: Callout type - "tip", "warning", "note", "info", "success", "danger" (optional, defaults to "info")
+    - title: Custom title (optional, defaults based on type)
+    - icon: Custom icon name (optional, uses type-based default)
+
+  Bulma-based styling with notification classes.
+*/ -}}
+{{- $type := .Get "type" | default "info" -}}
+{{- $title := .Get "title" -}}
+{{- $icon := .Get "icon" -}}
+
+{{- /* Map types to Bulma classes and default titles */ -}}
+{{- $typeMap := dict
+  "tip" (dict "class" "is-success is-light" "title" "Tip" "icon" "lightbulb-solid")
+  "warning" (dict "class" "is-warning is-light" "title" "Warning" "icon" "triangle-exclamation-solid")
+  "note" (dict "class" "is-info is-light" "title" "Note" "icon" "circle-info-solid")
+  "info" (dict "class" "is-info is-light" "title" "Info" "icon" "circle-info-solid")
+  "success" (dict "class" "is-success is-light" "title" "Success" "icon" "circle-check-solid")
+  "danger" (dict "class" "is-danger is-light" "title" "Danger" "icon" "circle-xmark-solid")
+-}}
+
+{{- $config := index $typeMap $type | default (index $typeMap "info") -}}
+{{- $bulmaClass := $config.class -}}
+{{- $defaultTitle := $config.title -}}
+{{- $defaultIcon := $config.icon -}}
+
+{{- /* Use custom values or defaults */ -}}
+{{- $displayTitle := $title | default $defaultTitle -}}
+{{- $displayIcon := $icon | default $defaultIcon -}}
+
+<div class="notification {{ $bulmaClass }} callout callout-{{ $type }}">
+  {{- if $displayTitle -}}
+  <p class="callout-title">
+    {{- /* Try to render icon if available */ -}}
+    {{- $iconResource := resources.Get (printf "icons/%s.svg" $displayIcon) -}}
+    {{- if $iconResource -}}
+    <span class="icon">{{ partial "components/icon.html" (dict "name" $displayIcon "class" "callout-icon") }}</span>
+    {{- end -}}
+    <strong>{{ $displayTitle }}</strong>
+  </p>
+  {{- end -}}
+  <div class="callout-content">
+    {{ .Inner | markdownify }}
+  </div>
+</div>

@@ -1,0 +1,37 @@
+{{- /*
+  BreadcrumbList Schema Partial
+
+  Usage: {{ partial "schema/breadcrumbs.html" . }}
+
+  Automatically builds breadcrumb trail from page context.
+  Works with any Hugo site structure.
+*/ -}}
+{{- $breadcrumbs := slice -}}
+{{- $breadcrumbs = $breadcrumbs | append (dict "name" "Home" "url" .Site.BaseURL) -}}
+{{- if .Section -}}
+  {{- $sectionURL := printf "%s%s/" .Site.BaseURL .Section -}}
+  {{- $sectionName := .Section | title -}}
+  {{- $breadcrumbs = $breadcrumbs | append (dict "name" $sectionName "url" $sectionURL) -}}
+{{- end -}}
+{{- if not .IsHome -}}
+  {{- if not (eq .Kind "section") -}}
+    {{- $breadcrumbs = $breadcrumbs | append (dict "name" .Title "url" .Permalink) -}}
+  {{- end -}}
+{{- end -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {{- range $i, $crumb := $breadcrumbs -}}
+    {{ if $i }},{{ end }}
+    {
+      "@type": "ListItem",
+      "position": {{ add $i 1 }},
+      "name": "{{ $crumb.name }}",
+      "item": "{{ $crumb.url }}"
+    }
+    {{- end }}
+  ]
+}
+</script>

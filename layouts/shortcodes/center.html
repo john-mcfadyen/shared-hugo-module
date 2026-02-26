@@ -1,0 +1,16 @@
+{{- /*
+  Content Centering Shortcode
+
+  Usage:
+    {{< center >}}
+    Content to center goes here
+    {{< /center >}}
+
+  Uses Bulma's column centering classes.
+  Wraps inner content in a centered column layout.
+*/ -}}
+<div class="columns is-centered">
+  <div class="column is-narrow has-text-centered">
+    {{ .Inner }}
+  </div>
+</div>

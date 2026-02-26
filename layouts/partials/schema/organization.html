@@ -1,0 +1,46 @@
+{{- /*
+  Organization Schema Partial
+
+  Usage: {{ partial "schema/organization.html" . }}
+
+  Required site params:
+    - .Site.Title
+    - .Site.BaseURL
+    - .Site.Params.description
+    - .Site.Params.author
+
+  Optional site params:
+    - .Site.Params.logo (defaults to /logo.png)
+    - .Site.Params.linkedin
+    - .Site.Params.socialLinks (array of URLs)
+*/ -}}
+{{- $logo := .Site.Params.logo | default (printf "%slogo.png" .Site.BaseURL) -}}
+{{- if not (hasPrefix $logo "http") -}}
+  {{- $logo = printf "%s%s" .Site.BaseURL (strings.TrimPrefix "/" $logo) -}}
+{{- end -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "{{ .Site.Title }}",
+  "url": "{{ .Site.BaseURL }}",
+  "logo": "{{ $logo }}",
+  "description": "{{ .Site.Params.description }}"
+  {{- with .Site.Params.author }},
+  "founder": {
+    "@type": "Person",
+    "name": "{{ . }}"
+  }
+  {{- end }}
+  {{- $socialLinks := slice -}}
+  {{- with .Site.Params.linkedin }}{{ $socialLinks = $socialLinks | append . }}{{ end -}}
+  {{- with .Site.Params.youtube }}{{ $socialLinks = $socialLinks | append . }}{{ end -}}
+  {{- with .Site.Params.tiktok }}{{ $socialLinks = $socialLinks | append . }}{{ end -}}
+  {{- with .Site.Params.instagram }}{{ $socialLinks = $socialLinks | append . }}{{ end -}}
+  {{- with .Site.Params.facebook }}{{ $socialLinks = $socialLinks | append . }}{{ end -}}
+  {{- with .Site.Params.socialLinks }}{{ $socialLinks = . }}{{ end -}}
+  {{- if $socialLinks }},
+  "sameAs": [{{ range $i, $link := $socialLinks }}{{ if $i }}, {{ end }}"{{ $link }}"{{ end }}]
+  {{- end }}
+}
+</script>

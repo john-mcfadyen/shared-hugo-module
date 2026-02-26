@@ -1,0 +1,54 @@
+{{- /*
+  Head Meta Tags Partial
+
+  Usage: {{ partial "utils/head-meta.html" . }}
+
+  Outputs common meta tags:
+    - Basic SEO (description, author, canonical)
+    - Open Graph tags
+    - Twitter Card tags
+
+  Required site params:
+    - .Site.Title
+    - .Site.Params.description
+    - .Site.Params.author
+
+  Optional page/site params:
+    - .Params.image / .Site.Params.defaultOgImage
+    - .Site.Params.twitterHandle
+*/ -}}
+{{- $title := cond .IsHome .Site.Title (printf "%s | %s" .Title .Site.Title) -}}
+{{- $description := .Description | default .Summary | default .Site.Params.description | plainify | truncate 160 -}}
+{{- $defaultImage := .Site.Params.defaultOgImage | default (printf "%sog-image.png" .Site.BaseURL) -}}
+{{- $image := .Params.image | default $defaultImage -}}
+{{- if and $image (not (hasPrefix $image "http")) -}}
+  {{- $image = printf "%s%s" .Site.BaseURL (strings.TrimPrefix "/" $image) -}}
+{{- end -}}
+
+<!-- Basic Meta -->
+<meta name="description" content="{{ $description }}">
+<meta name="author" content="{{ .Site.Params.author }}">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="{{ .Permalink }}">
+
+<!-- Open Graph -->
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $description }}">
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:site_name" content="{{ .Site.Title }}">
+{{- with $image }}
+<meta property="og:image" content="{{ . }}">
+{{- end }}
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+{{- with .Site.Params.twitterHandle }}
+<meta name="twitter:site" content="{{ . }}">
+{{- end }}
+<meta name="twitter:title" content="{{ $title }}">
+<meta name="twitter:description" content="{{ $description }}">
+{{- with $image }}
+<meta name="twitter:image" content="{{ . }}">
+{{- end }}

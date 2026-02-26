@@ -1,0 +1,57 @@
+{{- /*
+  Unified Image Shortcode
+
+  Usage:
+    {{< image src="/images/photo.jpg" alt="Description" >}}
+    {{< image src="/images/photo.jpg" alt="Description" width="600" center="true" >}}
+    {{< image src="/images/photo.jpg" alt="Description" caption="Figure 1: Photo" >}}
+
+  Parameters:
+    - src: Image path (required)
+    - alt: Alt text (required for accessibility)
+    - width: Target width (optional)
+    - height: Height constraint (optional)
+    - class: CSS class(es) (optional)
+    - center: Center the image (optional, defaults to false)
+    - caption: Image caption (optional)
+    - loading: "lazy" or "eager" (optional, defaults to "lazy")
+
+  Features:
+    - Automatically optimizes raster images (resize + WebP conversion)
+    - Centers image when center="true"
+    - Adds figure/figcaption when caption is provided
+*/ -}}
+{{- $src := .Get "src" -}}
+{{- $alt := .Get "alt" -}}
+{{- $width := .Get "width" -}}
+{{- $height := .Get "height" -}}
+{{- $class := .Get "class" | default "" -}}
+{{- $center := .Get "center" | default "false" -}}
+{{- $caption := .Get "caption" -}}
+{{- $loading := .Get "loading" | default "lazy" -}}
+
+{{- /* Build image parameters */ -}}
+{{- $imgParams := dict "src" $src "alt" $alt "loading" $loading "class" $class -}}
+{{- with $width }}{{ $imgParams = merge $imgParams (dict "width" .) }}{{ end -}}
+{{- with $height }}{{ $imgParams = merge $imgParams (dict "height" .) }}{{ end -}}
+
+{{- /* Determine wrapper class */ -}}
+{{- $wrapperClass := "" -}}
+{{- if eq $center "true" -}}
+  {{- $wrapperClass = "has-text-centered" -}}
+{{- end -}}
+
+{{- if $caption -}}
+<figure{{ with $wrapperClass }} class="{{ . }}"{{ end }}>
+  {{ partial "components/responsive-image.html" $imgParams }}
+  <figcaption>{{ $caption }}</figcaption>
+</figure>
+{{- else if eq $center "true" -}}
+<div class="columns is-centered">
+  <div class="column is-narrow">
+    {{ partial "components/responsive-image.html" $imgParams }}
+  </div>
+</div>
+{{- else -}}
+{{ partial "components/responsive-image.html" $imgParams }}
+{{- end -}}

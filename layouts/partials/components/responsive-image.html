@@ -1,0 +1,64 @@
+{{- /*
+  Responsive Image Partial
+
+  Usage: {{ partial "components/responsive-image.html" (dict "src" "/images/photo.jpg" "alt" "Description") }}
+
+  Parameters:
+    - src: Image path (relative to assets/ or absolute URL)
+    - alt: Alt text (required for accessibility)
+    - width: Target width (optional, defaults to "128x")
+    - height: Height constraint (optional)
+    - class: CSS class(es) (optional)
+    - style: Inline styles (optional)
+    - loading: "lazy" or "eager" (optional, defaults to "lazy")
+    - fetchpriority: "auto", "high", or "low" (optional, defaults to "auto")
+
+  Features:
+    - Automatically converts raster images to WebP
+    - Resizes images to specified width
+    - Passes through SVGs without modification
+    - Falls back to original src if asset not found
+
+  Example:
+  {{ partial "components/responsive-image.html" (dict "src" "/images/hero.jpg" "alt" "Hero image" "width" "800" "class" "hero-img" "loading" "eager" "fetchpriority" "high") }}
+*/ -}}
+{{- $loading := .loading | default "lazy" -}}
+{{- $fetchPriority := .fetchpriority | default "auto" -}}
+
+{{- /* Strip leading slash for resources.Get */ -}}
+{{- $imagePath := strings.TrimPrefix "/" .src -}}
+{{- $image := resources.Get $imagePath -}}
+
+{{- if $image -}}
+  {{- /* Check if SVG */ -}}
+  {{- if eq $image.MediaType.SubType "svg" -}}
+    {{- /* SVG: Serve directly without resizing */ -}}
+<img src="{{ $image.RelPermalink }}" alt="{{ .alt }}" class="{{ .class }}"
+  {{- with .width }} width="{{ . }}"{{ end }}
+  {{- with .height }} height="{{ . }}"{{ end }}
+  {{- with .style }} style="{{ . | safeCSS }}"{{ end }}
+  loading="{{ $loading }}" decoding="async" fetchpriority="{{ $fetchPriority }}">
+  {{- else -}}
+    {{- /* Raster image: Resize and convert to WebP */ -}}
+    {{- $w := .width | default "128x" -}}
+    {{- $spec := string $w -}}
+    {{- if eq $spec "x" -}}
+      {{- $spec = "128x" -}}
+    {{- end -}}
+    {{- if not (in $spec "x") -}}
+      {{- $spec = printf "%sx" $spec -}}
+    {{- end -}}
+    {{- $spec = printf "%s webp" $spec -}}
+    {{- $resized := $image.Resize $spec -}}
+<img src="{{ $resized.RelPermalink }}" width="{{ $resized.Width }}" height="{{ $resized.Height }}" alt="{{ .alt }}"
+  class="{{ .class }}"
+  {{- with .style }} style="{{ . | safeCSS }}"{{ end }}
+  loading="{{ $loading }}" decoding="async" fetchpriority="{{ $fetchPriority }}">
+  {{- end -}}
+{{- else -}}
+  {{- /* Fallback: Image not found in assets */ -}}
+  {{- warnf "responsive-image: Could not find '%s' in assets/. Using fallback." $imagePath -}}
+<img src="{{ .src }}" alt="{{ .alt }}" class="{{ .class }}"
+  {{- with .style }} style="{{ . | safeCSS }}"{{ end }}
+  loading="{{ $loading }}" decoding="async" fetchpriority="{{ $fetchPriority }}">
+{{- end -}}

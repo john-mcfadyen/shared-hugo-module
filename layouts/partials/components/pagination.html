@@ -1,0 +1,121 @@
+{{- /*
+  Pagination Partial
+
+  Usage: {{ partial "components/pagination.html" . }}
+
+  Expects page context with .Paginator available.
+  Uses Bulma CSS classes by default, but can be overridden via site params.
+
+  Optional site params:
+    - .Site.Params.pagination.prevIcon: Icon name for previous button
+    - .Site.Params.pagination.nextIcon: Icon name for next button
+    - .Site.Params.pagination.showLabels: Show "Previous"/"Next" text (defaults to true)
+
+  Note: Requires icon partial and corresponding SVG icons in assets/icons/
+*/ -}}
+{{- if gt .Paginator.TotalPages 1 -}}
+{{- $prevIcon := .Site.Params.pagination.prevIcon | default "chevron-left-solid-full" -}}
+{{- $nextIcon := .Site.Params.pagination.nextIcon | default "chevron-right-solid-full" -}}
+{{- $showLabels := .Site.Params.pagination.showLabels | default true -}}
+
+<nav class="pagination is-centered is-rounded" role="navigation" aria-label="pagination">
+    {{- /* Previous Page Link */ -}}
+    {{- if .Paginator.HasPrev -}}
+    <a href="{{ .Paginator.Prev.URL }}" class="pagination-previous" aria-label="Previous page">
+        <span class="icon is-small">
+            {{ partial "components/icon.html" (dict "name" $prevIcon "class" "pagination-icon") }}
+        </span>
+        {{- if $showLabels -}}
+        <span class="is-hidden-mobile">Previous</span>
+        {{- end -}}
+    </a>
+    {{- else -}}
+    <span class="pagination-previous" title="This is the first page" disabled>
+        <span class="icon is-small">
+            {{ partial "components/icon.html" (dict "name" $prevIcon "class" "pagination-icon") }}
+        </span>
+        {{- if $showLabels -}}
+        <span class="is-hidden-mobile">Previous</span>
+        {{- end -}}
+    </span>
+    {{- end -}}
+
+    {{- /* Next Page Link */ -}}
+    {{- if .Paginator.HasNext -}}
+    <a href="{{ .Paginator.Next.URL }}" class="pagination-next" aria-label="Next page">
+        {{- if $showLabels -}}
+        <span class="is-hidden-mobile">Next</span>
+        {{- end -}}
+        <span class="icon is-small">
+            {{ partial "components/icon.html" (dict "name" $nextIcon "class" "pagination-icon") }}
+        </span>
+    </a>
+    {{- else -}}
+    <span class="pagination-next" title="This is the last page" disabled>
+        {{- if $showLabels -}}
+        <span class="is-hidden-mobile">Next</span>
+        {{- end -}}
+        <span class="icon is-small">
+            {{ partial "components/icon.html" (dict "name" $nextIcon "class" "pagination-icon") }}
+        </span>
+    </span>
+    {{- end -}}
+
+    <ul class="pagination-list">
+        {{- /* First Page */ -}}
+        {{- if ne .Paginator.PageNumber 1 -}}
+        <li>
+            <a href="{{ .Paginator.First.URL }}" class="pagination-link" aria-label="Go to page 1">1</a>
+        </li>
+        {{- end -}}
+
+        {{- /* Ellipsis for start */ -}}
+        {{- if gt .Paginator.PageNumber 3 -}}
+        <li>
+            <span class="pagination-ellipsis">&hellip;</span>
+        </li>
+        {{- end -}}
+
+        {{- /* Previous Page Number */ -}}
+        {{- if and (gt .Paginator.PageNumber 2) (.Paginator.HasPrev) -}}
+        <li>
+            <a href="{{ .Paginator.Prev.URL }}" class="pagination-link" aria-label="Go to page {{ .Paginator.Prev.PageNumber }}">
+                {{ .Paginator.Prev.PageNumber }}
+            </a>
+        </li>
+        {{- end -}}
+
+        {{- /* Current Page */ -}}
+        <li>
+            <span class="pagination-link is-current" aria-label="Page {{ .Paginator.PageNumber }}" aria-current="page">
+                {{ .Paginator.PageNumber }}
+            </span>
+        </li>
+
+        {{- /* Next Page Number */ -}}
+        {{- if and (lt .Paginator.PageNumber (sub .Paginator.TotalPages 1)) (.Paginator.HasNext) -}}
+        <li>
+            <a href="{{ .Paginator.Next.URL }}" class="pagination-link" aria-label="Go to page {{ .Paginator.Next.PageNumber }}">
+                {{ .Paginator.Next.PageNumber }}
+            </a>
+        </li>
+        {{- end -}}
+
+        {{- /* Ellipsis for end */ -}}
+        {{- if lt .Paginator.PageNumber (sub .Paginator.TotalPages 2) -}}
+        <li>
+            <span class="pagination-ellipsis">&hellip;</span>
+        </li>
+        {{- end -}}
+
+        {{- /* Last Page */ -}}
+        {{- if ne .Paginator.PageNumber .Paginator.TotalPages -}}
+        <li>
+            <a href="{{ .Paginator.Last.URL }}" class="pagination-link" aria-label="Go to page {{ .Paginator.TotalPages }}">
+                {{ .Paginator.TotalPages }}
+            </a>
+        </li>
+        {{- end -}}
+    </ul>
+</nav>
+{{- end -}}

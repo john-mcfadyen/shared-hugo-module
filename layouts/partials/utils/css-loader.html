@@ -1,0 +1,51 @@
+{{- /*
+  CSS Loader Partial
+
+  Usage: {{ partial "utils/css-loader.html" (dict "context" . "files" (slice "css/main.css")) }}
+
+  Parameters (passed as dict):
+    - context: Page context (required)
+    - files: Array of CSS files to load from assets/ (required)
+    - concat: Output filename for concatenated bundle (optional, defaults to "css/bundle.css")
+    - postCSS: Whether to process with PostCSS (optional, defaults to false)
+
+  In development mode: Outputs non-minified CSS for easier debugging
+  In production mode: Concatenates, minifies, and fingerprints CSS
+
+  Example with PostCSS:
+  {{ partial "utils/css-loader.html" (dict "context" . "files" (slice "css/bulma.css" "css/main.css") "concat" "css/site.css" "postCSS" true) }}
+
+  Example simple:
+  {{ partial "utils/css-loader.html" (dict "context" . "files" (slice "css/main.css")) }}
+*/ -}}
+{{- $context := .context -}}
+{{- $files := .files -}}
+{{- $concatName := .concat | default "css/bundle.css" -}}
+{{- $usePostCSS := .postCSS | default false -}}
+
+{{- $resources := slice -}}
+{{- range $files -}}
+  {{- $res := resources.Get . -}}
+  {{- if $res -}}
+    {{- $resources = $resources | append $res -}}
+  {{- else -}}
+    {{- warnf "css-loader: Could not find '%s' in assets/" . -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if $resources -}}
+  {{- if eq hugo.Environment "development" -}}
+    {{- /* Development: Load files individually without processing */ -}}
+    {{- range $resources -}}
+<link rel="stylesheet" href="{{ .RelPermalink }}">
+    {{- end -}}
+  {{- else -}}
+    {{- /* Production: Bundle, process, minify, fingerprint */ -}}
+    {{- $bundle := $resources | resources.Concat $concatName -}}
+    {{- if $usePostCSS -}}
+      {{- $bundle = $bundle | css.PostCSS -}}
+    {{- end -}}
+    {{- $bundle = $bundle | minify | fingerprint -}}
+<link rel="stylesheet" href="{{ $bundle.RelPermalink }}" integrity="{{ $bundle.Data.Integrity }}" crossorigin="anonymous">
+  {{- end -}}
+{{- end -}}
