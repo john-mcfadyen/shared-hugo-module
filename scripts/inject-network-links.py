@@ -40,6 +40,7 @@ DEFAULT_CONFIG = {
     'max_links_per_post': 2,
     'min_word_count': 300,
     'min_anchor_length': 5,
+    'skip_first_words': 300,  # Don't inject links in first N words
     'excluded_terms': ['agile', 'scrum', 'team', 'sprint'],
 }
 
@@ -133,6 +134,32 @@ def get_word_count(body: str) -> int:
     return len(text.split())
 
 
+def get_char_position_after_n_words(text: str, n_words: int) -> int:
+    """
+    Get the character position in text after N words.
+    Used to skip the introduction/first N words when injecting links.
+    Returns 0 if n_words is 0, or len(text) if text has fewer words.
+    """
+    if n_words <= 0:
+        return 0
+
+    words_found = 0
+    in_word = False
+
+    for i, char in enumerate(text):
+        if char.isspace():
+            if in_word:
+                words_found += 1
+                if words_found >= n_words:
+                    return i
+            in_word = False
+        else:
+            in_word = True
+
+    # Text has fewer words than n_words, return end of text
+    return len(text)
+
+
 def has_network_links(body: str, target_domains: list[str]) -> bool:
     """Check if body already contains network links to target domains."""
     for domain in target_domains:
@@ -151,10 +178,14 @@ def count_existing_network_links(body: str, target_domains: list[str]) -> int:
     return count
 
 
-def find_anchor_matches(body: str, links: list[dict], excluded_terms: list[str]) -> list[dict]:
-    """Find all anchor term matches in the body."""
+def find_anchor_matches(body: str, links: list[dict], excluded_terms: list[str],
+                        skip_first_words: int = 0) -> list[dict]:
+    """Find all anchor term matches in the body, skipping first N words."""
     matches = []
     body_lower = body.lower()
+
+    # Calculate minimum position (skip first N words)
+    min_position = get_char_position_after_n_words(body, skip_first_words)
 
     # Track which positions have been matched to avoid overlaps
     matched_positions = set()
@@ -199,6 +230,10 @@ def find_anchor_matches(body: str, links: list[dict], excluded_terms: list[str])
 
             for match in pattern.finditer(body):
                 start, end = match.span()
+
+                # Skip matches in the first N words (introduction protection)
+                if start < min_position:
+                    continue
 
                 # Check if this position overlaps with existing match
                 if any(start < mp_end and end > mp_start for mp_start, mp_end in matched_positions):
@@ -279,6 +314,7 @@ def process_posts(blog_dir: Path, links: list[dict], config: dict,
     max_percent = config['max_network_linked_posts_percent']
     max_links_per_post = config['max_links_per_post']
     min_word_count = config['min_word_count']
+    skip_first_words = config.get('skip_first_words', 300)
     excluded_terms = config.get('excluded_terms', [])
 
     stats = {
@@ -346,8 +382,8 @@ def process_posts(blog_dir: Path, links: list[dict], config: dict,
     posts_to_link = eligible_posts[:remaining_slots]
 
     for post_path, content, body, fm_format in posts_to_link:
-        # Find anchor matches
-        matches = find_anchor_matches(body, links, excluded_terms)
+        # Find anchor matches (skipping first N words)
+        matches = find_anchor_matches(body, links, excluded_terms, skip_first_words)
 
         if not matches:
             stats['no_matches'] += 1
@@ -436,6 +472,7 @@ def main():
 
     print(f"  Max network-linked posts: {config['max_network_linked_posts_percent']}%")
     print(f"  Max links per post: {config['max_links_per_post']}")
+    print(f"  Skip first words: {config.get('skip_first_words', 300)}")
     print(f"  Sources: {len(sources)}")
 
     # Collect target domains for checking existing links
