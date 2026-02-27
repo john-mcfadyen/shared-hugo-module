@@ -189,6 +189,12 @@ def find_anchor_matches(body: str, anchor_terms: list[str], target_path: str,
             if '<' in before and '>' not in before[before.rfind('<'):]:
                 continue
 
+            # Check if inside a markdown heading
+            line_start = body.rfind('\n', 0, start) + 1
+            line_content = body[line_start:start]
+            if line_content.lstrip().startswith('#'):
+                continue
+
             matches.append({
                 'anchor': match.group(1),
                 'target_path': target_path,
