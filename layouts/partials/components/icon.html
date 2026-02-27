@@ -18,6 +18,15 @@
 {{- /* Strip "fa-" prefix if present for compatibility */ -}}
 {{- $fileName := replace $rawName "fa-" "" -}}
 
+{{- /* Transform Font Awesome format "solid {name}" to "{name}-solid-full" */ -}}
+{{- if hasPrefix $fileName "solid " -}}
+  {{- $iconName := strings.TrimPrefix "solid " $fileName -}}
+  {{- $fileName = printf "%s-solid-full" $iconName -}}
+{{- else if hasPrefix $fileName "brands " -}}
+  {{- $iconName := strings.TrimPrefix "brands " $fileName -}}
+  {{- $fileName = printf "%s-brands-solid-full" $iconName -}}
+{{- end -}}
+
 {{- /* Find the SVG file in assets/icons/ */ -}}
 {{- $icon := resources.Get (printf "icons/%s.svg" $fileName) -}}
 
