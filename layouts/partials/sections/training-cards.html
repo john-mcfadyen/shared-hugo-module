@@ -1,0 +1,152 @@
+{{/*
+  Training Cards Section
+
+  Displays courses and/or workshops from GSM in a responsive card grid.
+  Each site can style these cards using their own CSS while maintaining
+  consistent Bulma structure.
+
+  Usage:
+    {{ partial "sections/training-cards.html" (dict "type" "courses" "limit" 3) }}
+    {{ partial "sections/training-cards.html" (dict "type" "workshops" "limit" 6 "track" "execution") }}
+    {{ partial "sections/training-cards.html" (dict "type" "all" "limit" 6) }}
+
+  Parameters:
+    type: "courses", "workshops", or "all" (default: "all")
+    limit: Maximum number of items to display (default: 6)
+    track: Filter workshops by track (optional)
+    showPrice: Show price on cards (default: true)
+    showDate: Show next date if available (default: true)
+    class: Additional CSS classes for the container
+
+  CSS Classes for styling:
+    .training-cards - Container
+    .training-card - Individual card
+    .training-card--course - Course-specific styling
+    .training-card--workshop - Workshop-specific styling
+    .training-card__seal - Certification seal image
+    .training-card__title - Card title
+    .training-card__description - Card description
+    .training-card__meta - Price, duration, format info
+    .training-card__date - Next available date
+    .training-card__cta - Read more button
+*/}}
+
+{{- $type := .type | default "all" -}}
+{{- $limit := .limit | default 6 -}}
+{{- $track := .track | default "" -}}
+{{- $showPrice := .showPrice | default true -}}
+{{- $showDate := .showDate | default true -}}
+{{- $class := .class | default "" -}}
+
+{{- $data := site.Data.gsm_training -}}
+{{- if not $data -}}
+  {{- $data = site.Data.gsmTraining -}}
+{{- end -}}
+
+{{- if $data -}}
+  {{- $items := slice -}}
+
+  {{/* Collect courses */}}
+  {{- if or (eq $type "courses") (eq $type "all") -}}
+    {{- range $data.courses -}}
+      {{- $items = $items | append (merge . (dict "_type" "course")) -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{/* Collect workshops (optionally filtered by track) */}}
+  {{- if or (eq $type "workshops") (eq $type "all") -}}
+    {{- range $data.workshops -}}
+      {{- if or (not $track) (eq .track $track) -}}
+        {{- $items = $items | append (merge . (dict "_type" "workshop")) -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{/* Apply limit */}}
+  {{- $items = first $limit $items -}}
+
+  {{- if $items -}}
+  <div class="training-cards {{ $class }}">
+    <div class="columns is-multiline">
+      {{- range $items -}}
+      <div class="column is-4-desktop is-6-tablet">
+        <div class="card training-card training-card--{{ ._type }}">
+          {{/* Card Image/Seal (for courses with certification seals) */}}
+          {{- if and .sealImage (eq ._type "course") -}}
+          <div class="card-image training-card__seal">
+            <figure class="image is-128x128 mx-auto mt-4">
+              <img src="{{ $data.baseUrl }}/{{ .sealImage }}" alt="{{ .title }} certification" loading="lazy">
+            </figure>
+          </div>
+          {{- end -}}
+
+          <div class="card-content">
+            {{/* Title */}}
+            <h3 class="title is-5 training-card__title">{{ .title }}</h3>
+
+            {{/* Description */}}
+            {{- with .benefitSummary -}}
+            <p class="training-card__description">{{ . }}</p>
+            {{- else -}}
+            <p class="training-card__description">{{ .description | truncate 120 }}</p>
+            {{- end -}}
+
+            {{/* Meta info */}}
+            <div class="training-card__meta">
+              {{- if and $showPrice .price -}}
+              <span class="tag is-primary training-card__price">£{{ .price }}</span>
+              {{- end -}}
+              {{- with .duration -}}
+              <span class="tag is-light training-card__duration">{{ . }}</span>
+              {{- end -}}
+              {{- with .format -}}
+              <span class="tag is-light training-card__format">{{ . }}</span>
+              {{- end -}}
+            </div>
+
+            {{/* Next date */}}
+            {{- if and $showDate .nextDate -}}
+            <p class="training-card__date has-text-grey mt-2">
+              <span class="icon is-small"><i class="fas fa-calendar"></i></span>
+              Next: {{ .nextDate.startDate }}
+            </p>
+            {{- end -}}
+          </div>
+
+          {{/* CTA */}}
+          <footer class="card-footer">
+            <a href="{{ .url }}" class="card-footer-item training-card__cta" target="_blank" rel="noopener">
+              Read more <span class="icon is-small ml-1"><i class="fas fa-arrow-right"></i></span>
+            </a>
+          </footer>
+        </div>
+      </div>
+      {{- end -}}
+    </div>
+
+    {{/* View all link */}}
+    <div class="has-text-centered mt-5">
+      {{- if eq $type "courses" -}}
+      <a href="{{ $data.baseUrl }}/courses/" class="button is-outlined training-cards__view-all" target="_blank" rel="noopener">
+        View all courses
+      </a>
+      {{- else if eq $type "workshops" -}}
+      <a href="{{ $data.baseUrl }}/workshops/" class="button is-outlined training-cards__view-all" target="_blank" rel="noopener">
+        View all workshops
+      </a>
+      {{- else -}}
+      <a href="{{ $data.baseUrl }}/courses/" class="button is-outlined training-cards__view-all mr-2" target="_blank" rel="noopener">
+        View all courses
+      </a>
+      <a href="{{ $data.baseUrl }}/workshops/" class="button is-outlined training-cards__view-all" target="_blank" rel="noopener">
+        View all workshops
+      </a>
+      {{- end -}}
+    </div>
+  </div>
+  {{- else -}}
+  <p class="has-text-centered has-text-grey">No training available at this time.</p>
+  {{- end -}}
+{{- else -}}
+  <!-- Training data not found. Run export-training.py to generate gsm_training.yaml -->
+{{- end -}}

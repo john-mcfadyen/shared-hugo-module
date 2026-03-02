@@ -1,0 +1,34 @@
+{{/*
+  Training Cards Shortcode
+
+  Display GSM courses and workshops in content pages.
+
+  Usage:
+    {{< training-cards >}}
+    {{< training-cards type="courses" limit="3" >}}
+    {{< training-cards type="workshops" track="execution" >}}
+
+  Parameters:
+    type: "courses", "workshops", or "all" (default: "all")
+    limit: Maximum items to show (default: 6)
+    track: Filter workshops by track
+    showPrice: "true" or "false" (default: "true")
+    showDate: "true" or "false" (default: "true")
+    class: Additional CSS classes
+*/}}
+
+{{- $type := .Get "type" | default "all" -}}
+{{- $limit := .Get "limit" | default 6 -}}
+{{- $track := .Get "track" | default "" -}}
+{{- $showPrice := ne (.Get "showPrice") "false" -}}
+{{- $showDate := ne (.Get "showDate") "false" -}}
+{{- $class := .Get "class" | default "" -}}
+
+{{- partial "sections/training-cards.html" (dict
+  "type" $type
+  "limit" (int $limit)
+  "track" $track
+  "showPrice" $showPrice
+  "showDate" $showDate
+  "class" $class
+) -}}

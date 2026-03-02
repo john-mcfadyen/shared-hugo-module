@@ -1,0 +1,468 @@
+generated: '2026-03-02T10:27:39.667953+00:00'
+source: growingscrummasters.com
+baseUrl: https://www.growingscrummasters.com
+courses:
+- slug: a-csm
+  title: The Coach's Advanced Certified ScrumMaster® (A-CSM)
+  description: Elevate your mastery from process to performance.
+  url: https://www.growingscrummasters.com/courses/a-csm/
+  price: 795 + VAT
+  duration: 2 Days
+  format: Live Online
+  level: Advanced
+  sealImage: images/scrum-alliance-seals/sa-adv_csm-600.svg
+  benefitSummary: Master the Art of Agile Coaching
+- slug: csm
+  title: Certified ScrumMaster (CSM)
+  description: Don't just pass a test—learn to lead.
+  url: https://www.growingscrummasters.com/courses/csm/
+  price: 595 + VAT
+  duration: 2 Days
+  format: Live Online
+  level: Foundation
+  sealImage: images/scrum-alliance-seals/sa-csm-600.svg
+  benefitSummary: Master Scrum Fundamentals
+- slug: csp-sm
+  title: The Enterprise Certified Scrum Professional - ScrumMaster® (CSP-SM)
+  description: Reach the pinnacle of Scrum Mastery.
+  url: https://www.growingscrummasters.com/courses/csp-sm/
+  price: 995 + VAT
+  duration: 2 Days
+  format: Live Online
+  level: Expert / Professional
+  sealImage: images/scrum-alliance-seals/sa-csp_sm-600.svg
+  benefitSummary: Master Enterprise Agility
+- slug: cspo
+  title: Certified Scrum Product Owner (CSPO)
+  description: Master the art of Product Ownership.
+  url: https://www.growingscrummasters.com/courses/cspo/
+  price: 595 + VAT
+  duration: 2 Days
+  format: Live Online
+  level: Foundation
+  sealImage: images/scrum-alliance-seals/sa-cspo-600.svg
+  benefitSummary: Maximise Value & ROI
+workshops:
+- slug: advanced-facilitation
+  title: 'Facilitation Mastery: Leading Conversations That Matter'
+  description: Move beyond basic meeting management to master the art of facilitation—with
+    AI helping you design sessions, navigate difficult dynamics, and capture actionable
+    outcomes.
+  url: https://www.growingscrummasters.com/workshops/advanced-facilitation/
+  price: 99 + VAT
+  duration: 90 Minutes
+  format: Live Online
+  level: Advanced / Practitioner
+  track: leadership
+  icon: people-arrows-solid-full
+  benefitSummary: Elevate your facilitation from competent to masterful—with AI assisting
+    session design, energy management, and outcome capture.
+- slug: agile-coaching-essentials
+  title: 'Agile Coaching Essentials: Techniques Sharpened by AI'
+  description: Combine proven coaching techniques with AI-powered tools to unlock
+    your team's hidden potential and elevate your practice.
+  url: https://www.growingscrummasters.com/workshops/agile-coaching-essentials/
+  price: 99 + VAT
+  duration: 90 Minutes
+  format: Live Online
+  level: Foundational / Practitioner
+  track: leadership
+  icon: chalkboard-user-solid-full
+  benefitSummary: Amplify your coaching impact by combining timeless techniques with
+    AI-powered preparation and reflection.
+- slug: agile-manifesto
+  title: 'The Agile Manifesto in the AI Age: Unlocking the Code'
+  description: Rediscover the four values and twelve principles that sparked a revolution—and
+    learn how AI amplifies them for the modern practitioner.
+  url: https://www.growingscrummasters.com/workshops/agile-manifesto/
+  price: 99 + VAT
+  duration: 90 Minutes
+  format: Live Online
+  level: Beginner / Intermediate
+  track: foundations
+  icon: scroll-solid-full
+  benefitSummary: Move beyond the rules and embrace the true Agile mindset—now supercharged
+    with AI as a practical ally.
+- slug: agile-office-hours
+  title: 'Agile Office Hours: The Monthly Meetup'
+  description: A free, informal 30-minute drop-in for Agile practitioners. No agenda,
+    no sales pitch—just a space to discuss ideas, share what you're reading, and connect
+    with peers.
+  url: https://www.growingscrummasters.com/workshops/agile-office-hours/
+  price: Free
+  duration: 30 Minutes
+  format: Live Online Drop-in
+  level: All Levels
+  track: community
+  icon: mug-hot-solid-full
+  benefitSummary: A monthly 'watercooler' moment to connect with like-minded folk
+    without the pressure of a formal agenda.
+- slug: ai-powered-sprint-planning
+  title: Turn Chaos Into Clarity. Master AI-Powered Sprint Planning
+  description: Master AI-Powered Sprint Planning — and Get Things Done, even in massive
+    complexity.
+  url: https://www.growingscrummasters.com/workshops/ai-powered-sprint-planning/
+  price: 99 + VAT
+  duration: 90 Minutes
+  format: Live Online
+  level: Intermediate / Practitioner
+  track: execution
+  icon: robot-solid-full
+  benefitSummary: Wield the power of artificial intelligence to make your sprint planning
+    faster, smarter, and more predictable.
+- slug: assumption-testing
+  title: 'Assumption Testing: De-Risking Ideas Before You Build'
+  description: Identify the riskiest assumptions in your product bets and design experiments
+    to test them—with AI helping you generate hypotheses and analyse results.
+  url: https://www.growingscrummasters.com/workshops/assumption-testing/
+  price: 99 + VAT
+  duration: 90 Minutes
+  format: Live Online
+  level: Intermediate / Advanced
+  track: product
+  icon: flask-solid-full
+  benefitSummary: De-risk your product bets by identifying and testing the assumptions
+    that could sink them—with AI accelerating experiment design.
+- slug: coaching-conversations
+  title: 'Difficult Conversations: Coaching Through Resistance'
+  description: Master the conversations others avoid—with AI helping you prepare approaches,
+    anticipate reactions, and reflect on outcomes.
+  url: https://www.growingscrummasters.com/workshops/coaching-conversations/
+  price: 99 + VAT
+  duration: 90 Minutes
+  format: Live Online
+  level: Advanced / Practitioner
+  track: leadership
+  icon: comment-dollar-solid-full
+  benefitSummary: Navigate the conversations others avoid—with AI helping you prepare,
+    anticipate reactions, and reflect on what worked.
+- slug: conflict-management
+  title: 'Turning Friction into Fuel: Conflict Resolution with AI'
+  description: Stop fearing conflict and start managing it. Combine proven resolution
+    frameworks with AI-driven pattern recognition to turn heated debates into productive
+    collaboration.
+  url: https://www.growingscrummasters.com/workshops/conflict-management/
+  price: 99 + VAT
+  duration: 90 Minutes
+  format: Live Online
+  level: Intermediate
+  track: leadership
+  icon: fire-solid-full
+  benefitSummary: Stop fearing conflict and start leveraging it—with AI helping you
+    spot patterns and prepare for tough conversations.
+- slug: continuous-discovery
+  title: 'Continuous Discovery Habits: Talking to Customers Every Week'
+  description: Build the weekly rhythms that connect your team to customers—with AI
+    helping you synthesise interviews, spot patterns, and maintain discovery momentum.
+  url: https://www.growingscrummasters.com/workshops/continuous-discovery/
+  price: 99 + VAT
+  duration: 90 Minutes
+  format: Live Online
+  level: Intermediate / Advanced
+  track: product
+  icon: magnifying-glass-solid-full
+  benefitSummary: Build sustainable discovery habits that keep your team connected
+    to real customer needs—with AI accelerating insight synthesis.
+- slug: daily-scrum
+  title: 'The Daily Scrum Reimagined: Mastering the 15-Minute Pulse'
+  description: Transform your daily stand-ups from monotonous status updates into
+    AI-augmented synchronization events that surface blockers and drive team momentum.
+  url: https://www.growingscrummasters.com/workshops/daily-scrum/
+  price: 99 + VAT
+  duration: 90 Minutes
+  format: Live Online
+  level: Beginner / Intermediate
+  track: execution
+  icon: heart-pulse-solid-full
+  benefitSummary: Transform your daily stand-ups from monotonous status updates into
+    AI-augmented synchronization events.
+- slug: design-sprints
+  title: 'Design Sprints: From Idea to Tested Prototype in Five Days'
+  description: Compress months of debate into a focused week of structured problem-solving—with
+    AI accelerating research, ideation, and prototype creation.
+  url: https://www.growingscrummasters.com/workshops/design-sprints/
+  price: 99 + VAT
+  duration: 90 Minutes
+  format: Live Online
+  level: Intermediate / Practitioner
+  track: product
+  icon: bolt-solid-full
+  benefitSummary: Compress months of debate into a focused week that takes you from
+    challenge to tested prototype—with AI accelerating every phase.
+- slug: empowered-teams
+  title: 'Empowered Product Teams: From Feature Teams to Missionaries'
+  description: Transform your teams from order-takers into empowered problem-solvers—with
+    AI supporting autonomy through better information access.
+  url: https://www.growingscrummasters.com/workshops/empowered-teams/
+  price: 99 + VAT
+  duration: 90 Minutes
+  format: Live Online
+  level: Intermediate / Advanced
+  track: product
+  icon: users-rays-solid-full
+  benefitSummary: Transform your teams from feature factories into empowered missionaries
+    who own problems, not just backlogs.
+- slug: escaping-build-trap
+  title: 'Escaping the Build Trap: Outcomes Over Output'
+  description: Break free from the feature factory and refocus your organisation on
+    delivering customer value—with AI helping you measure outcomes and challenge assumptions.
+  url: https://www.growingscrummasters.com/workshops/escaping-build-trap/
+  price: 99 + VAT
+  duration: 90 Minutes
+  format: Live Online
+  level: Intermediate / Advanced
+  track: product
+  icon: rocket-solid-full
+  benefitSummary: Break free from the feature factory mindset and refocus your team
+    on outcomes that matter to customers and the business.
+- slug: exploring-agile-at-scale
+  title: 'Scaling Agile with AI: Navigating Complexity'
+  description: Navigate the complex landscape of Agile scaling frameworks and discover
+    how AI helps coordinate multi-team delivery at scale.
+  url: https://www.growingscrummasters.com/workshops/exploring-agile-at-scale/
+  price: 99 + VAT
+  duration: 90 Minutes
+  format: Live Online
+  level: Intermediate
+  track: foundations
+  icon: chart-line-solid-full
+  benefitSummary: Demystify large-scale software delivery and discover how AI can
+    tame the complexity of multi-team coordination.
+- slug: exploring-user-stories
+  title: 'User Stories Reimagined: Crafting Narratives with AI'
+  description: Stop writing requirements and start telling stories. Use AI to draft,
+    refine, and validate user stories that bridge the gap between technical specs
+    and business value.
+  url: https://www.growingscrummasters.com/workshops/exploring-user-stories/
+  price: 99 + VAT
+  duration: 90 Minutes
+  format: Live Online
+  level: Beginner / Intermediate
+  track: product
+  icon: book-open-solid-full
+  benefitSummary: Stop writing rigid requirements and start telling the narrative
+    stories that drive real customer value—with AI as your writing partner.
+- slug: fundamentals-of-kanban
+  title: 'Kanban for the AI Age: Unlocking Intelligent Flow'
+  description: Discover the power of visualization and flow, augmented by AI-driven
+    bottleneck detection and predictive analytics.
+  url: https://www.growingscrummasters.com/workshops/fundamentals-of-kanban/
+  price: 99 + VAT
+  duration: 90 Minutes
+  format: Live Online
+  level: Beginner / Intermediate
+  track: foundations
+  icon: table-columns-solid-full
+  benefitSummary: Learn to visualize invisible work and use AI to predict bottlenecks
+    before they slow your delivery down.
+- slug: fundamentals-of-scrum
+  title: 'Scrum in the AI Era: The Framework for Modern Agility'
+  description: Master the roles, events, and artifacts of Scrum—and discover how AI
+    amplifies each one for the modern practitioner.
+  url: https://www.growingscrummasters.com/workshops/fundamentals-of-scrum/
+  price: 99 + VAT
+  duration: 90 Minutes
+  format: Live Online
+  level: Beginner / Intermediate
+  track: foundations
+  icon: puzzle-piece-solid-full
+  benefitSummary: Master the fundamental mechanics of Scrum and discover how AI augments
+    every role, event, and artifact.
+- slug: impediment-removal
+  title: 'Spotting Hidden Blockers: Impediment Detection with AI'
+  description: Learn to read the room, hear what isn't being said, and use AI to identify
+    impediments before they derail your team.
+  url: https://www.growingscrummasters.com/workshops/impediment-removal/
+  price: 99 + VAT
+  duration: 90 Minutes
+  format: Live Online
+  level: Intermediate
+  track: leadership
+  icon: user-secret-solid-full
+  benefitSummary: Develop the 'detective' skills needed to spot hidden blockers—augmented
+    by AI-driven pattern recognition across your team's data.
+- slug: metrics-and-reporting
+  title: 'Agile Metrics Unleashed: From Data to Decisions'
+  description: Move beyond guesswork by combining actionable Agile metrics with AI-powered
+    analysis, trend detection, and predictive reporting.
+  url: https://www.growingscrummasters.com/workshops/metrics-and-reporting/
+  price: 99 + VAT
+  duration: 90 Minutes
+  format: Live Online
+  level: Intermediate / Practitioner
+  track: leadership
+  icon: chart-line-solid-full
+  benefitSummary: Move beyond guesswork and gut feelings by combining actionable metrics
+    with AI-powered analysis and prediction.
+- slug: opportunity-solution-trees
+  title: 'Opportunity Solution Trees: Mapping the Path to Outcomes'
+  description: Structure your discovery work with a visual framework that connects
+    outcomes to opportunities to solutions—with AI helping you generate and evaluate
+    options.
+  url: https://www.growingscrummasters.com/workshops/opportunity-solution-trees/
+  price: 99 + VAT
+  duration: 90 Minutes
+  format: Live Online
+  level: Intermediate / Advanced
+  track: product
+  icon: sitemap-solid-full
+  benefitSummary: Structure your discovery with a visual framework that ensures solutions
+    trace back to real customer opportunities and business outcomes.
+- slug: organisational-change
+  title: 'Leading Agile Transformation: Change Management for Practitioners'
+  description: Navigate the human side of organisational change—with AI helping you
+    map stakeholders, anticipate resistance, and track adoption patterns.
+  url: https://www.growingscrummasters.com/workshops/organisational-change/
+  price: 99 + VAT
+  duration: 90 Minutes
+  format: Live Online
+  level: Advanced / Practitioner
+  track: leadership
+  icon: group-arrows-rotate-solid-full
+  benefitSummary: Lead lasting organisational change by understanding the human dynamics
+    of transformation—with AI mapping resistance and tracking adoption.
+- slug: prioritisation
+  title: 'The Art of Strategic Focus: Prioritisation with AI'
+  description: Escape the tyranny of 'yes' and use AI-powered impact analysis to focus
+    your team on the work that delivers maximum value.
+  url: https://www.growingscrummasters.com/workshops/prioritisation/
+  price: 99 + VAT
+  duration: 90 Minutes
+  format: Live Online
+  level: Beginner / Intermediate
+  track: product
+  icon: filter-solid-full
+  benefitSummary: Master the art of saying 'no' with confidence—backed by AI-driven
+    impact analysis and data-informed priority scoring.
+- slug: product-backlog-refinement
+  title: 'Backlog Refinement Mastery: From Chaos to Clarity'
+  description: Transform your backlog from a simple to-do list into a strategic tool—with
+    AI helping you assess quality, surface gaps, and keep items truly ready.
+  url: https://www.growingscrummasters.com/workshops/product-backlog-refinement/
+  price: 99 + VAT
+  duration: 90 Minutes
+  format: Live Online
+  level: Intermediate / Practitioner
+  track: product
+  icon: list-check-solid-full
+  benefitSummary: Transform your backlog from a simple to-do list into a strategic
+    tool—with AI surfacing gaps and keeping items truly ready.
+- slug: product-vision
+  title: 'Crafting the North Star: Product Vision for the AI Era'
+  description: Define the destination before starting the journey—with AI helping
+    you validate market fit, identify gaps, and keep your vision aligned with reality.
+  url: https://www.growingscrummasters.com/workshops/product-vision/
+  price: 99 + VAT
+  duration: 90 Minutes
+  format: Live Online
+  level: Intermediate / Advanced
+  track: product
+  icon: compass-solid-full
+  benefitSummary: Define your destination with a compelling product vision—validated
+    by AI-driven market analysis and gap detection.
+- slug: psychological-safety
+  title: 'Building Fearless Teams: Psychological Safety in Practice'
+  description: Create environments where people speak up, take risks, and learn from
+    failure—with AI helping you measure safety and design targeted interventions.
+  url: https://www.growingscrummasters.com/workshops/psychological-safety/
+  price: 99 + VAT
+  duration: 90 Minutes
+  format: Live Online
+  level: Intermediate / Advanced
+  track: leadership
+  icon: shield-heart-solid-full
+  benefitSummary: Foster the psychological safety that high-performing teams need—with
+    AI helping you measure it and design interventions.
+- slug: role-scrum-master
+  title: 'The Scrum Master Evolved: Servant Leader with AI'
+  description: Go beyond the basics to understand the true depth of the Scrum Master
+    role—with AI as your intelligence partner for coaching, impediment detection,
+    and team health.
+  url: https://www.growingscrummasters.com/workshops/role-scrum-master/
+  price: 99 + VAT
+  duration: 90 Minutes
+  format: Live Online
+  level: Beginner / Intermediate
+  track: leadership
+  icon: hand-holding-heart-solid-full
+  benefitSummary: Move beyond 'meeting booker' and step into your true potential—with
+    AI amplifying your coaching, detection, and facilitation skills.
+- slug: sprint-lifecycle
+  title: 'The Sprint Reimagined: The Heartbeat of Agile'
+  description: Master the fundamental rhythm of Agile delivery—with AI monitoring
+    sprint health, predicting risks, and keeping your heartbeat steady.
+  url: https://www.growingscrummasters.com/workshops/sprint-lifecycle/
+  price: 99 + VAT
+  duration: 90 Minutes
+  format: Live Online
+  level: Beginner / Intermediate
+  track: execution
+  icon: person-running-solid-full
+  benefitSummary: Establish a predictable, sustainable rhythm—with AI monitoring sprint
+    health and surfacing risks before they derail delivery.
+- slug: sprint-planning
+  title: 'Sprint Planning Mastery: From Chaos to Confidence'
+  description: Unlock the secrets of effective Sprint Planning—with AI providing capacity
+    insights, risk analysis, and data-driven forecasting.
+  url: https://www.growingscrummasters.com/workshops/sprint-planning/
+  price: 99 + VAT
+  duration: 90 Minutes
+  format: Live Online
+  level: Intermediate / Practitioner
+  track: execution
+  icon: calendar-check-solid-full
+  benefitSummary: Unlock the secrets of effective Sprint Planning—with AI providing
+    capacity insights, historical analysis, and confident forecasting.
+- slug: sprint-retrospectives
+  title: 'Retrospectives Reimagined: Unlocking Team Potential'
+  description: Transform your retrospectives from repetitive meetings into powerful
+    engines for growth—with AI surfacing patterns, preparing insights, and tracking
+    improvement over time.
+  url: https://www.growingscrummasters.com/workshops/sprint-retrospectives/
+  price: 99 + VAT
+  duration: 90 Minutes
+  format: Live Online
+  level: Intermediate / Practitioner
+  track: execution
+  icon: clock-rotate-left-solid-full
+  benefitSummary: Transform your retrospectives from repetitive meetings into powerful
+    engines for continuous improvement—with AI preparing insights and tracking progress.
+- slug: sprint-reviews
+  title: 'Sprint Reviews Reinvented: Beyond the Demo'
+  description: Turn your Sprint Reviews from passive presentations into dynamic sessions—with
+    AI helping you prepare compelling narratives and gather structured feedback.
+  url: https://www.growingscrummasters.com/workshops/sprint-reviews/
+  price: 99 + VAT
+  duration: 90 Minutes
+  format: Live Online
+  level: Intermediate / Practitioner
+  track: execution
+  icon: users-solid-full
+  benefitSummary: Turn your Sprint Reviews from passive presentations into dynamic
+    sessions—with AI helping prepare narratives and synthesise feedback.
+- slug: stakeholder-management
+  title: 'Managing Up and Out: Stakeholder Engagement for Agile Leaders'
+  description: Build the relationships that make or break your influence—with AI helping
+    you map stakeholders, tailor communication, and track engagement.
+  url: https://www.growingscrummasters.com/workshops/stakeholder-management/
+  price: 99 + VAT
+  duration: 90 Minutes
+  format: Live Online
+  level: Intermediate / Advanced
+  track: leadership
+  icon: handshake-solid-full
+  benefitSummary: Master the art of stakeholder engagement—with AI helping you map
+    influence, tailor messages, and track relationship health.
+- slug: team-performance
+  title: 'High-Performance Teams: From Good to Great'
+  description: Unlock the dynamics that separate adequate teams from exceptional ones—with
+    AI helping you diagnose blockers and design targeted interventions.
+  url: https://www.growingscrummasters.com/workshops/team-performance/
+  price: 99 + VAT
+  duration: 90 Minutes
+  format: Live Online
+  level: Intermediate / Advanced
+  track: leadership
+  icon: trophy-solid-full
+  benefitSummary: Unlock the dynamics that transform good teams into great ones—with
+    AI diagnosing blockers and designing interventions.
