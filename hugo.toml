@@ -1,0 +1,15 @@
+# Shared Hugo Module Configuration
+# This module provides shared partials, data, and static assets for GSM network sites
+
+[module]
+  [[module.mounts]]
+    source = "layouts"
+    target = "layouts"
+
+  [[module.mounts]]
+    source = "data"
+    target = "data"
+
+  [[module.mounts]]
+    source = "static"
+    target = "static"
