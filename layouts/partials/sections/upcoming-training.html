@@ -56,7 +56,7 @@
     <table class="table is-fullwidth is-hoverable upcoming-training__table">
       <thead>
         <tr>
-          <th class="upcoming-training__th-icon is-hidden-mobile"></th>
+          <th class="upcoming-training__th-seal is-hidden-mobile"></th>
           <th>Date</th>
           <th>Training</th>
           {{- if $showLocation -}}<th class="is-hidden-mobile">Location</th>{{- end -}}
@@ -67,11 +67,9 @@
       <tbody>
         {{- range $dates -}}
         <tr class="upcoming-training__row">
-          <td class="upcoming-training__icon is-hidden-mobile">
+          <td class="upcoming-training__seal is-hidden-mobile">
             {{- if .sealImage -}}
               <img src="{{ $data.baseUrl }}/{{ .sealImage }}" alt="" class="upcoming-training__seal-img">
-            {{- else if .icon -}}
-              <img src="{{ $data.baseUrl }}/images/workshop-icons/{{ .icon }}.svg" alt="" class="upcoming-training__workshop-icon">
             {{- end -}}
           </td>
           <td class="upcoming-training__date">
