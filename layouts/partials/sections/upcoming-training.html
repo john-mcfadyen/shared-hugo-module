@@ -1,0 +1,115 @@
+{{/*
+  Upcoming Training Dates Section
+
+  Displays a list of upcoming course and workshop dates from GSM.
+  Shows specific dates rather than course overviews.
+
+  Usage:
+    {{ partial "sections/upcoming-training.html" (dict "limit" 6) }}
+    {{ partial "sections/upcoming-training.html" (dict "type" "course" "limit" 4) }}
+    {{ partial "sections/upcoming-training.html" (dict "type" "workshop" "limit" 8) }}
+
+  Parameters:
+    type: "course", "workshop", or "all" (default: "all")
+    limit: Maximum number of dates to display (default: 6)
+    showPrice: Show price column (default: true)
+    showLocation: Show location column (default: true)
+    class: Additional CSS classes for the container
+
+  CSS Classes for styling:
+    .upcoming-training - Container
+    .upcoming-training__table - The table element
+    .upcoming-training__row - Table row
+    .upcoming-training__date - Date column
+    .upcoming-training__title - Course/workshop title
+    .upcoming-training__location - Location info
+    .upcoming-training__price - Price info
+    .upcoming-training__cta - Book/read more link
+*/}}
+
+{{- $type := .type | default "all" -}}
+{{- $limit := .limit | default 6 -}}
+{{- $showPrice := .showPrice | default true -}}
+{{- $showLocation := .showLocation | default true -}}
+{{- $class := .class | default "" -}}
+
+{{- $data := site.Data.gsm_training -}}
+{{- if not $data -}}
+  {{- $data = site.Data.gsmTraining -}}
+{{- end -}}
+
+{{- if $data -}}
+  {{- $dates := $data.upcomingDates -}}
+
+  {{/* Filter by type if specified */}}
+  {{- if and $dates (ne $type "all") -}}
+    {{- $dates = where $dates "type" $type -}}
+  {{- end -}}
+
+  {{/* Apply limit */}}
+  {{- if $dates -}}
+    {{- $dates = first $limit $dates -}}
+  {{- end -}}
+
+  {{- if $dates -}}
+  <div class="upcoming-training {{ $class }}">
+    <table class="table is-fullwidth is-hoverable upcoming-training__table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Training</th>
+          {{- if $showLocation -}}<th class="is-hidden-mobile">Location</th>{{- end -}}
+          {{- if $showPrice -}}<th class="is-hidden-mobile">Price</th>{{- end -}}
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{- range $dates -}}
+        <tr class="upcoming-training__row">
+          <td class="upcoming-training__date">
+            {{- /* Parse and format the date */ -}}
+            {{- $dateStr := .startDate -}}
+            {{- if $dateStr -}}
+              {{- $parsed := time $dateStr -}}
+              <strong>{{ $parsed.Format "2 Jan" }}</strong>
+              <span class="is-size-7 has-text-grey">{{ $parsed.Format "2006" }}</span>
+            {{- end -}}
+          </td>
+          <td class="upcoming-training__title">
+            <strong>{{ .title }}</strong>
+            {{- if eq .type "workshop" -}}
+            <span class="tag is-small is-light ml-2">Workshop</span>
+            {{- end -}}
+          </td>
+          {{- if $showLocation -}}
+          <td class="upcoming-training__location is-hidden-mobile">
+            {{ .location | default "Live Online" }}
+          </td>
+          {{- end -}}
+          {{- if $showPrice -}}
+          <td class="upcoming-training__price is-hidden-mobile">
+            {{- with .price -}}£{{ . }}{{- end -}}
+          </td>
+          {{- end -}}
+          <td class="upcoming-training__cta has-text-right">
+            <a href="{{ .url }}" class="button is-small is-outlined" target="_blank" rel="noopener">
+              Read more
+            </a>
+          </td>
+        </tr>
+        {{- end -}}
+      </tbody>
+    </table>
+
+    <div class="has-text-centered mt-4">
+      <a href="{{ $data.baseUrl }}/courses/" class="button is-outlined upcoming-training__view-all" target="_blank" rel="noopener">
+        View all training
+      </a>
+    </div>
+  </div>
+  {{- else -}}
+  <p class="has-text-centered has-text-grey">No upcoming training dates at this time.</p>
+  {{- end -}}
+{{- else -}}
+  <!-- Training data not found. Run export-training.py to generate gsm_training.yaml -->
+{{- end -}}

@@ -1,4 +1,4 @@
-generated: '2026-03-02T10:27:39.667953+00:00'
+generated: '2026-03-02T10:56:56.622825+00:00'
 source: growingscrummasters.com
 baseUrl: https://www.growingscrummasters.com
 courses:
@@ -12,6 +12,14 @@ courses:
   level: Advanced
   sealImage: images/scrum-alliance-seals/sa-adv_csm-600.svg
   benefitSummary: Master the Art of Agile Coaching
+  nextDate:
+    startDate: '2026-05-21'
+    finishDate: '2026-05-22'
+    startTime: 09:30
+    finishTime: '17:30'
+    location: Live Online
+    price: 795 + VAT
+    link: https://events.johnmcfadyen.com/courses/ygpztza5/buy
 - slug: csm
   title: Certified ScrumMaster (CSM)
   description: Don't just pass a test—learn to lead.
@@ -97,6 +105,14 @@ workshops:
   icon: mug-hot-solid-full
   benefitSummary: A monthly 'watercooler' moment to connect with like-minded folk
     without the pressure of a formal agenda.
+  nextDate:
+    startDate: '2026-03-04'
+    finishDate: '2026-03-04'
+    startTime: '16:00'
+    finishTime: '16:30'
+    location: Online
+    price: Free
+    link: https://events.johnmcfadyen.com/live-webinar/agile-office-hours/register
 - slug: ai-powered-sprint-planning
   title: Turn Chaos Into Clarity. Master AI-Powered Sprint Planning
   description: Master AI-Powered Sprint Planning — and Get Things Done, even in massive
@@ -466,3 +482,148 @@ workshops:
   icon: trophy-solid-full
   benefitSummary: Unlock the dynamics that transform good teams into great ones—with
     AI diagnosing blockers and designing interventions.
+upcomingDates:
+- type: workshop
+  title: 'Agile Office Hours: The Monthly Meetup'
+  slug: agile-office-hours
+  url: https://www.growingscrummasters.com/workshops/agile-office-hours/
+  startDate: '2026-03-04'
+  finishDate: '2026-03-04'
+  startTime: '16:00'
+  finishTime: '16:30'
+  location: Online
+  price: Free
+  trainer: John McFadyen
+  link: https://events.johnmcfadyen.com/live-webinar/agile-office-hours/register
+- type: workshop
+  title: 'Agile Office Hours: The Monthly Meetup'
+  slug: agile-office-hours
+  url: https://www.growingscrummasters.com/workshops/agile-office-hours/
+  startDate: '2026-04-01'
+  finishDate: '2026-04-01'
+  startTime: '16:00'
+  finishTime: '16:30'
+  location: Online
+  price: Free
+  trainer: John McFadyen
+  link: https://events.johnmcfadyen.com/live-webinar/agile-office-hours/register
+- type: workshop
+  title: 'Agile Office Hours: The Monthly Meetup'
+  slug: agile-office-hours
+  url: https://www.growingscrummasters.com/workshops/agile-office-hours/
+  startDate: '2026-05-06'
+  finishDate: '2026-05-06'
+  startTime: '16:00'
+  finishTime: '16:30'
+  location: Online
+  price: Free
+  trainer: John McFadyen
+  link: https://events.johnmcfadyen.com/live-webinar/agile-office-hours/register
+- type: course
+  title: The Coach's Advanced Certified ScrumMaster® (A-CSM)
+  slug: a-csm
+  url: https://www.growingscrummasters.com/courses/a-csm/
+  startDate: '2026-05-21'
+  finishDate: '2026-05-22'
+  startTime: 09:30
+  finishTime: '17:30'
+  location: Live Online
+  price: 795 + VAT
+  trainer: John McFadyen
+  link: https://events.johnmcfadyen.com/courses/ygpztza5/buy
+- type: workshop
+  title: 'Agile Office Hours: The Monthly Meetup'
+  slug: agile-office-hours
+  url: https://www.growingscrummasters.com/workshops/agile-office-hours/
+  startDate: '2026-06-03'
+  finishDate: '2026-06-03'
+  startTime: '14:00'
+  finishTime: '14:30'
+  location: Online
+  price: Free
+  trainer: John McFadyen
+  link: https://events.johnmcfadyen.com/live-webinar/agile-office-hours/register
+- type: workshop
+  title: 'Agile Office Hours: The Monthly Meetup'
+  slug: agile-office-hours
+  url: https://www.growingscrummasters.com/workshops/agile-office-hours/
+  startDate: '2026-07-01'
+  finishDate: '2026-07-01'
+  startTime: '14:00'
+  finishTime: '14:30'
+  location: Online
+  price: Free
+  trainer: John McFadyen
+  link: https://events.johnmcfadyen.com/live-webinar/agile-office-hours/register
+- type: workshop
+  title: 'Agile Office Hours: The Monthly Meetup'
+  slug: agile-office-hours
+  url: https://www.growingscrummasters.com/workshops/agile-office-hours/
+  startDate: '2026-09-02'
+  finishDate: '2026-09-02'
+  startTime: '16:00'
+  finishTime: '16:30'
+  location: Online
+  price: Free
+  trainer: John McFadyen
+  link: https://events.johnmcfadyen.com/live-webinar/agile-office-hours/register
+- type: course
+  title: The Coach's Advanced Certified ScrumMaster® (A-CSM)
+  slug: a-csm
+  url: https://www.growingscrummasters.com/courses/a-csm/
+  startDate: '2026-09-17'
+  finishDate: '2026-09-18'
+  startTime: 09:30
+  finishTime: '17:30'
+  location: Online
+  price: 795 + VAT
+  trainer: John McFadyen
+  link: https://events.johnmcfadyen.com/courses/t5xj2h3c/buy
+- type: workshop
+  title: 'Agile Office Hours: The Monthly Meetup'
+  slug: agile-office-hours
+  url: https://www.growingscrummasters.com/workshops/agile-office-hours/
+  startDate: '2026-10-07'
+  finishDate: '2026-10-07'
+  startTime: '16:00'
+  finishTime: '16:30'
+  location: Online
+  price: Free
+  trainer: John McFadyen
+  link: https://events.johnmcfadyen.com/live-webinar/agile-office-hours/register
+- type: workshop
+  title: 'Agile Office Hours: The Monthly Meetup'
+  slug: agile-office-hours
+  url: https://www.growingscrummasters.com/workshops/agile-office-hours/
+  startDate: '2026-11-04'
+  finishDate: '2026-11-04'
+  startTime: '16:00'
+  finishTime: '16:30'
+  location: Online
+  price: Free
+  trainer: John McFadyen
+  link: https://events.johnmcfadyen.com/live-webinar/agile-office-hours/register
+- type: course
+  title: The Coach's Advanced Certified ScrumMaster® (A-CSM)
+  slug: a-csm
+  url: https://www.growingscrummasters.com/courses/a-csm/
+  startDate: '2026-11-19'
+  finishDate: '2026-11-20'
+  startTime: 09:30
+  finishTime: '17:30'
+  location: Online
+  price: 795 + VAT
+  trainer: John McFadyen
+  link: https://events.johnmcfadyen.com/courses/6m8m5szu/buy
+- type: workshop
+  title: 'Agile Office Hours: The Monthly Meetup'
+  slug: agile-office-hours
+  url: https://www.growingscrummasters.com/workshops/agile-office-hours/
+  startDate: '2026-12-02'
+  finishDate: '2026-12-02'
+  startTime: '16:00'
+  finishTime: '16:30'
+  location: Online
+  price: Free
+  trainer: John McFadyen
+  link: https://events.johnmcfadyen.com/live-webinar/agile-office-hours/register

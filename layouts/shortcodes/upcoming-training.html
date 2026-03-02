@@ -1,0 +1,31 @@
+{{/*
+  Upcoming Training Shortcode
+
+  Display upcoming GSM training dates in content pages.
+
+  Usage:
+    {{< upcoming-training >}}
+    {{< upcoming-training type="course" limit="4" >}}
+    {{< upcoming-training type="workshop" limit="8" >}}
+
+  Parameters:
+    type: "course", "workshop", or "all" (default: "all")
+    limit: Maximum dates to show (default: 6)
+    showPrice: "true" or "false" (default: "true")
+    showLocation: "true" or "false" (default: "true")
+    class: Additional CSS classes
+*/}}
+
+{{- $type := .Get "type" | default "all" -}}
+{{- $limit := .Get "limit" | default 6 -}}
+{{- $showPrice := ne (.Get "showPrice") "false" -}}
+{{- $showLocation := ne (.Get "showLocation") "false" -}}
+{{- $class := .Get "class" | default "" -}}
+
+{{- partial "sections/upcoming-training.html" (dict
+  "type" $type
+  "limit" (int $limit)
+  "showPrice" $showPrice
+  "showLocation" $showLocation
+  "class" $class
+) -}}
