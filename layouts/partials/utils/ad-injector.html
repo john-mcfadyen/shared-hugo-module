@@ -1,0 +1,96 @@
+{{- /*
+Ad Injector Partial (Shared Module)
+Injects editorial blog promos before subheadings (h2).
+
+Frequency (graduated approach):
+- Under 600 words: no promos
+- 600-1200 words: 1 promo at 50% (middle)
+- 1200-2000 words: 2 promos at 33% & 66%
+- 2000+ words: 3 promos at 25%, 50%, 75%
+*/ -}}
+
+{{- $content := .Content -}}
+{{- $page := .Page -}}
+
+{{- /* Extract all H2 headers */ -}}
+{{- $headers := findRE "(?s)<h2[^>]*>.*?</h2>" $content -}}
+{{- $headerCount := len $headers -}}
+
+{{- /* Check for related posts list */ -}}
+{{- $related := $page.Params.related_posts | default slice -}}
+
+{{- /* Exit if too short, fewer than 2 headers, or no related posts */ -}}
+{{- /* We need at least 2 H2s to ensure promo appears after some content */ -}}
+{{- if or (lt $page.WordCount 600) (lt $headerCount 2) (eq (len $related) 0) -}}
+{{- $content | safeHTML -}}
+{{- else -}}
+
+{{- /* Shuffle related posts for variety */ -}}
+{{- $shuffledPosts := shuffle $related -}}
+
+{{- /* Determine promo count and positions based on word count */ -}}
+{{- $maxAds := 1 -}}
+{{- $positions := slice 0.50 -}}
+
+{{- if ge $page.WordCount 2000 -}}
+    {{- $maxAds = 3 -}}
+    {{- $positions = slice 0.25 0.50 0.75 -}}
+{{- else if ge $page.WordCount 1200 -}}
+    {{- $maxAds = 2 -}}
+    {{- $positions = slice 0.33 0.66 -}}
+{{- end -}}
+
+{{- /* Calculate header indices for each position */ -}}
+{{- /* Never inject before the first H2 (index 0) - always leave intro content */ -}}
+{{- $indices := slice -}}
+{{- range $positions -}}
+    {{- $idx := int (math.Floor (mul $headerCount .)) -}}
+    {{- if ge $idx $headerCount -}}
+        {{- $idx = sub $headerCount 1 -}}
+    {{- end -}}
+    {{- if eq $idx 0 -}}
+        {{- $idx = 1 -}}
+    {{- end -}}
+    {{- $indices = $indices | append $idx -}}
+{{- end -}}
+
+{{- /* Deduplicate indices (ensure we don't inject at same header twice) */ -}}
+{{- $usedIndices := slice -}}
+{{- $finalIndices := slice -}}
+{{- range $indices -}}
+    {{- $idx := . -}}
+    {{- $found := false -}}
+    {{- range $usedIndices -}}
+        {{- if eq . $idx -}}
+            {{- $found = true -}}
+        {{- end -}}
+    {{- end -}}
+    {{- if not $found -}}
+        {{- $finalIndices = $finalIndices | append $idx -}}
+        {{- $usedIndices = $usedIndices | append $idx -}}
+    {{- end -}}
+{{- end -}}
+
+{{- /* Inject promos at calculated positions (reverse order to preserve indices) */ -}}
+{{- $adCount := len $finalIndices -}}
+{{- if gt $adCount $maxAds -}}
+    {{- $adCount = $maxAds -}}
+{{- end -}}
+
+{{- /* Process in reverse order so replacements don't shift positions */ -}}
+{{- range $i := seq (sub $adCount 1) 0 -}}
+    {{- $idx := index $finalIndices $i -}}
+    {{- $postIdx := $i -}}
+    {{- if ge $postIdx (len $shuffledPosts) -}}
+        {{- $postIdx = mod $i (len $shuffledPosts) -}}
+    {{- end -}}
+    {{- $promoID := index $shuffledPosts $postIdx -}}
+    {{- $header := index $headers $idx -}}
+    {{- $adHTML := partial "ads/blog-promo.html" (dict "Page" $page "PromoID" $promoID) -}}
+    {{- if $adHTML -}}
+        {{- $content = replace $content $header (printf "%s\n%s" $adHTML $header) 1 -}}
+    {{- end -}}
+{{- end -}}
+
+{{- $content | safeHTML -}}
+{{- end -}}
