@@ -52,7 +52,7 @@ def parse_front_matter(file_path: Path) -> dict:
     return {}
 
 
-def get_all_upcoming_dates(course_dir: Path, course_title: str, course_slug: str, item_type: str = "course") -> List[Dict]:
+def get_all_upcoming_dates(course_dir: Path, course_title: str, course_slug: str, item_type: str = "course", seal_or_icon: str = "") -> List[Dict]:
     """Get all upcoming dates for a course or workshop."""
     now = datetime.now(timezone.utc)
     dates = []
@@ -106,6 +106,12 @@ def get_all_upcoming_dates(course_dir: Path, course_title: str, course_slug: str
                 "link": fm.get("courseLink", ""),
                 "_sort": start_date.isoformat(),  # For sorting
             }
+            # Add seal image for courses or icon for workshops
+            if seal_or_icon:
+                if item_type == "course":
+                    date_entry["sealImage"] = seal_or_icon
+                else:
+                    date_entry["icon"] = seal_or_icon
             dates.append(date_entry)
 
         except (ValueError, TypeError):
@@ -219,8 +225,9 @@ def export_courses() -> tuple:
             "benefitSummary": fm.get("benefit_summary", ""),
         }
 
-        # Get all upcoming dates
-        upcoming_dates = get_all_upcoming_dates(course_dir, title, slug, "course")
+        # Get all upcoming dates (pass seal image for courses)
+        seal_image = fm.get("sealImage", "")
+        upcoming_dates = get_all_upcoming_dates(course_dir, title, slug, "course", seal_image)
         all_dates.extend(upcoming_dates)
 
         # Get next upcoming date if available
@@ -276,8 +283,9 @@ def export_workshops() -> tuple:
             "benefitSummary": fm.get("benefit_summary", ""),
         }
 
-        # Get all upcoming dates
-        upcoming_dates = get_all_upcoming_dates(workshop_dir, title, slug, "workshop")
+        # Get all upcoming dates (pass icon for workshops)
+        icon = fm.get("icon", "")
+        upcoming_dates = get_all_upcoming_dates(workshop_dir, title, slug, "workshop", icon)
         all_dates.extend(upcoming_dates)
 
         # Get next upcoming date if available

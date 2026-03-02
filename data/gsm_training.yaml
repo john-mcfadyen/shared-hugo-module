@@ -1,4 +1,4 @@
-generated: '2026-03-02T10:56:56.622825+00:00'
+generated: '2026-03-02T11:14:39.356956+00:00'
 source: growingscrummasters.com
 baseUrl: https://www.growingscrummasters.com
 courses:
@@ -495,6 +495,7 @@ upcomingDates:
   price: Free
   trainer: John McFadyen
   link: https://events.johnmcfadyen.com/live-webinar/agile-office-hours/register
+  icon: mug-hot-solid-full
 - type: workshop
   title: 'Agile Office Hours: The Monthly Meetup'
   slug: agile-office-hours
@@ -507,6 +508,7 @@ upcomingDates:
   price: Free
   trainer: John McFadyen
   link: https://events.johnmcfadyen.com/live-webinar/agile-office-hours/register
+  icon: mug-hot-solid-full
 - type: workshop
   title: 'Agile Office Hours: The Monthly Meetup'
   slug: agile-office-hours
@@ -519,6 +521,7 @@ upcomingDates:
   price: Free
   trainer: John McFadyen
   link: https://events.johnmcfadyen.com/live-webinar/agile-office-hours/register
+  icon: mug-hot-solid-full
 - type: course
   title: The Coach's Advanced Certified ScrumMaster® (A-CSM)
   slug: a-csm
@@ -531,6 +534,7 @@ upcomingDates:
   price: 795 + VAT
   trainer: John McFadyen
   link: https://events.johnmcfadyen.com/courses/ygpztza5/buy
+  sealImage: images/scrum-alliance-seals/sa-adv_csm-600.svg
 - type: workshop
   title: 'Agile Office Hours: The Monthly Meetup'
   slug: agile-office-hours
@@ -543,6 +547,7 @@ upcomingDates:
   price: Free
   trainer: John McFadyen
   link: https://events.johnmcfadyen.com/live-webinar/agile-office-hours/register
+  icon: mug-hot-solid-full
 - type: workshop
   title: 'Agile Office Hours: The Monthly Meetup'
   slug: agile-office-hours
@@ -555,6 +560,7 @@ upcomingDates:
   price: Free
   trainer: John McFadyen
   link: https://events.johnmcfadyen.com/live-webinar/agile-office-hours/register
+  icon: mug-hot-solid-full
 - type: workshop
   title: 'Agile Office Hours: The Monthly Meetup'
   slug: agile-office-hours
@@ -567,6 +573,7 @@ upcomingDates:
   price: Free
   trainer: John McFadyen
   link: https://events.johnmcfadyen.com/live-webinar/agile-office-hours/register
+  icon: mug-hot-solid-full
 - type: course
   title: The Coach's Advanced Certified ScrumMaster® (A-CSM)
   slug: a-csm
@@ -579,6 +586,7 @@ upcomingDates:
   price: 795 + VAT
   trainer: John McFadyen
   link: https://events.johnmcfadyen.com/courses/t5xj2h3c/buy
+  sealImage: images/scrum-alliance-seals/sa-adv_csm-600.svg
 - type: workshop
   title: 'Agile Office Hours: The Monthly Meetup'
   slug: agile-office-hours
@@ -591,6 +599,7 @@ upcomingDates:
   price: Free
   trainer: John McFadyen
   link: https://events.johnmcfadyen.com/live-webinar/agile-office-hours/register
+  icon: mug-hot-solid-full
 - type: workshop
   title: 'Agile Office Hours: The Monthly Meetup'
   slug: agile-office-hours
@@ -603,6 +612,7 @@ upcomingDates:
   price: Free
   trainer: John McFadyen
   link: https://events.johnmcfadyen.com/live-webinar/agile-office-hours/register
+  icon: mug-hot-solid-full
 - type: course
   title: The Coach's Advanced Certified ScrumMaster® (A-CSM)
   slug: a-csm
@@ -615,6 +625,7 @@ upcomingDates:
   price: 795 + VAT
   trainer: John McFadyen
   link: https://events.johnmcfadyen.com/courses/6m8m5szu/buy
+  sealImage: images/scrum-alliance-seals/sa-adv_csm-600.svg
 - type: workshop
   title: 'Agile Office Hours: The Monthly Meetup'
   slug: agile-office-hours
@@ -627,3 +638,4 @@ upcomingDates:
   price: Free
   trainer: John McFadyen
   link: https://events.johnmcfadyen.com/live-webinar/agile-office-hours/register
+  icon: mug-hot-solid-full
