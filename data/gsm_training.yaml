@@ -1,4 +1,4 @@
-generated: '2026-03-03T11:09:32.748926+00:00'
+generated: '2026-03-04T13:01:44.301911+00:00'
 source: growingscrummasters.com
 baseUrl: https://www.growingscrummasters.com
 courses:
@@ -106,8 +106,8 @@ workshops:
   benefitSummary: A monthly 'watercooler' moment to connect with like-minded folk
     without the pressure of a formal agenda.
   nextDate:
-    startDate: '2026-03-04'
-    finishDate: '2026-03-04'
+    startDate: '2026-04-01'
+    finishDate: '2026-04-01'
     startTime: '16:00'
     finishTime: '16:30'
     location: Online
@@ -483,19 +483,6 @@ workshops:
   benefitSummary: Unlock the dynamics that transform good teams into great ones—with
     AI diagnosing blockers and designing interventions.
 upcomingDates:
-- type: workshop
-  title: 'Agile Office Hours: The Monthly Meetup'
-  slug: agile-office-hours
-  url: https://www.growingscrummasters.com/workshops/agile-office-hours/
-  startDate: '2026-03-04'
-  finishDate: '2026-03-04'
-  startTime: '16:00'
-  finishTime: '16:30'
-  location: Online
-  price: Free
-  trainer: John McFadyen
-  link: https://events.johnmcfadyen.com/live-webinar/agile-office-hours/register
-  icon: mug-hot-solid-full
 - type: workshop
   title: 'Agile Office Hours: The Monthly Meetup'
   slug: agile-office-hours
