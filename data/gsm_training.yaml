@@ -1,4 +1,4 @@
-generated: '2026-03-04T13:01:44.301911+00:00'
+generated: '2026-03-05T11:10:26.403959+00:00'
 source: growingscrummasters.com
 baseUrl: https://www.growingscrummasters.com
 courses:
@@ -40,6 +40,14 @@ courses:
   level: Expert / Professional
   sealImage: images/scrum-alliance-seals/sa-csp_sm-600.svg
   benefitSummary: Master Enterprise Agility
+  nextDate:
+    startDate: '2026-06-18'
+    finishDate: '2026-06-19'
+    startTime: 09:30
+    finishTime: '17:30'
+    location: Live Online
+    price: 995 + VAT
+    link: https://events.johnmcfadyen.com/courses/yuytlu2x/buy
 - slug: cspo
   title: Certified Scrum Product Owner (CSPO)
   description: Master the art of Product Ownership.
@@ -535,6 +543,19 @@ upcomingDates:
   trainer: John McFadyen
   link: https://events.johnmcfadyen.com/live-webinar/agile-office-hours/register
   icon: mug-hot-solid-full
+- type: course
+  title: The Enterprise Certified Scrum Professional - ScrumMaster® (CSP-SM)
+  slug: csp-sm
+  url: https://www.growingscrummasters.com/courses/csp-sm/
+  startDate: '2026-06-18'
+  finishDate: '2026-06-19'
+  startTime: 09:30
+  finishTime: '17:30'
+  location: Live Online
+  price: 995 + VAT
+  trainer: John McFadyen
+  link: https://events.johnmcfadyen.com/courses/yuytlu2x/buy
+  sealImage: images/scrum-alliance-seals/sa-csp_sm-600.svg
 - type: workshop
   title: 'Agile Office Hours: The Monthly Meetup'
   slug: agile-office-hours
@@ -569,7 +590,7 @@ upcomingDates:
   finishDate: '2026-09-18'
   startTime: 09:30
   finishTime: '17:30'
-  location: Online
+  location: Live Online
   price: 795 + VAT
   trainer: John McFadyen
   link: https://events.johnmcfadyen.com/courses/t5xj2h3c/buy
@@ -601,6 +622,19 @@ upcomingDates:
   link: https://events.johnmcfadyen.com/live-webinar/agile-office-hours/register
   icon: mug-hot-solid-full
 - type: course
+  title: The Enterprise Certified Scrum Professional - ScrumMaster® (CSP-SM)
+  slug: csp-sm
+  url: https://www.growingscrummasters.com/courses/csp-sm/
+  startDate: '2026-11-05'
+  finishDate: '2026-11-06'
+  startTime: 09:30
+  finishTime: '17:30'
+  location: Live Online
+  price: 995 + VAT
+  trainer: John McFadyen
+  link: https://events.johnmcfadyen.com/courses/jzgddzbz/buy
+  sealImage: images/scrum-alliance-seals/sa-csp_sm-600.svg
+- type: course
   title: The Coach's Advanced Certified ScrumMaster® (A-CSM)
   slug: a-csm
   url: https://www.growingscrummasters.com/courses/a-csm/
@@ -608,7 +642,7 @@ upcomingDates:
   finishDate: '2026-11-20'
   startTime: 09:30
   finishTime: '17:30'
-  location: Online
+  location: Live Online
   price: 795 + VAT
   trainer: John McFadyen
   link: https://events.johnmcfadyen.com/courses/6m8m5szu/buy
