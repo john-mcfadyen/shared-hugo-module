@@ -1,4 +1,4 @@
-generated: '2026-03-05T11:56:00.022491+00:00'
+generated: '2026-03-06T12:07:13.743009+00:00'
 source: growingscrummasters.com
 baseUrl: https://www.growingscrummasters.com
 courses:
@@ -86,19 +86,6 @@ workshops:
   icon: chalkboard-user-solid-full
   benefitSummary: Amplify your coaching impact by combining timeless techniques with
     AI-powered preparation and reflection.
-- slug: agile-manifesto
-  title: 'The Agile Manifesto in the AI Age: Unlocking the Code'
-  description: Rediscover the four values and twelve principles that sparked a revolution—and
-    learn how AI amplifies them for the modern practitioner.
-  url: https://www.growingscrummasters.com/workshops/agile-manifesto/
-  price: 99 + VAT
-  duration: 90 Minutes
-  format: Live Online
-  level: Beginner / Intermediate
-  track: foundations
-  icon: scroll-solid-full
-  benefitSummary: Move beyond the rules and embrace the true Agile mindset—now supercharged
-    with AI as a practical ally.
 - slug: agile-office-hours
   title: 'Agile Office Hours: The Monthly Meetup'
   description: A free, informal 30-minute drop-in for Agile practitioners. No agenda,
@@ -187,19 +174,6 @@ workshops:
   icon: magnifying-glass-solid-full
   benefitSummary: Build sustainable discovery habits that keep your team connected
     to real customer needs—with AI accelerating insight synthesis.
-- slug: daily-scrum
-  title: 'The Daily Scrum Reimagined: Mastering the 15-Minute Pulse'
-  description: Transform your daily stand-ups from monotonous status updates into
-    AI-augmented synchronization events that surface blockers and drive team momentum.
-  url: https://www.growingscrummasters.com/workshops/daily-scrum/
-  price: 99 + VAT
-  duration: 90 Minutes
-  format: Live Online
-  level: Beginner / Intermediate
-  track: execution
-  icon: heart-pulse-solid-full
-  benefitSummary: Transform your daily stand-ups from monotonous status updates into
-    AI-augmented synchronization events.
 - slug: design-sprints
   title: 'Design Sprints: From Idea to Tested Prototype in Five Days'
   description: Compress months of debate into a focused week of structured problem-solving—with
@@ -252,20 +226,6 @@ workshops:
   icon: chart-line-solid-full
   benefitSummary: Demystify large-scale software delivery and discover how AI can
     tame the complexity of multi-team coordination.
-- slug: exploring-user-stories
-  title: 'User Stories Reimagined: Crafting Narratives with AI'
-  description: Stop writing requirements and start telling stories. Use AI to draft,
-    refine, and validate user stories that bridge the gap between technical specs
-    and business value.
-  url: https://www.growingscrummasters.com/workshops/exploring-user-stories/
-  price: 99 + VAT
-  duration: 90 Minutes
-  format: Live Online
-  level: Beginner / Intermediate
-  track: product
-  icon: book-open-solid-full
-  benefitSummary: Stop writing rigid requirements and start telling the narrative
-    stories that drive real customer value—with AI as your writing partner.
 - slug: fundamentals-of-kanban
   title: 'Kanban for the AI Age: Unlocking Intelligent Flow'
   description: Discover the power of visualization and flow, augmented by AI-driven
@@ -279,19 +239,6 @@ workshops:
   icon: table-columns-solid-full
   benefitSummary: Learn to visualize invisible work and use AI to predict bottlenecks
     before they slow your delivery down.
-- slug: fundamentals-of-scrum
-  title: 'Scrum in the AI Era: The Framework for Modern Agility'
-  description: Master the roles, events, and artifacts of Scrum—and discover how AI
-    amplifies each one for the modern practitioner.
-  url: https://www.growingscrummasters.com/workshops/fundamentals-of-scrum/
-  price: 99 + VAT
-  duration: 90 Minutes
-  format: Live Online
-  level: Beginner / Intermediate
-  track: foundations
-  icon: puzzle-piece-solid-full
-  benefitSummary: Master the fundamental mechanics of Scrum and discover how AI augments
-    every role, event, and artifact.
 - slug: impediment-removal
   title: 'Spotting Hidden Blockers: Impediment Detection with AI'
   description: Learn to read the room, hear what isn't being said, and use AI to identify
@@ -358,19 +305,6 @@ workshops:
   icon: filter-solid-full
   benefitSummary: Master the art of saying 'no' with confidence—backed by AI-driven
     impact analysis and data-informed priority scoring.
-- slug: product-backlog-refinement
-  title: 'Backlog Refinement Mastery: From Chaos to Clarity'
-  description: Transform your backlog from a simple to-do list into a strategic tool—with
-    AI helping you assess quality, surface gaps, and keep items truly ready.
-  url: https://www.growingscrummasters.com/workshops/product-backlog-refinement/
-  price: 99 + VAT
-  duration: 90 Minutes
-  format: Live Online
-  level: Intermediate / Practitioner
-  track: product
-  icon: list-check-solid-full
-  benefitSummary: Transform your backlog from a simple to-do list into a strategic
-    tool—with AI surfacing gaps and keeping items truly ready.
 - slug: product-vision
   title: 'Crafting the North Star: Product Vision for the AI Era'
   description: Define the destination before starting the journey—with AI helping
@@ -411,32 +345,6 @@ workshops:
   icon: hand-holding-heart-solid-full
   benefitSummary: Move beyond 'meeting booker' and step into your true potential—with
     AI amplifying your coaching, detection, and facilitation skills.
-- slug: sprint-lifecycle
-  title: 'The Sprint Reimagined: The Heartbeat of Agile'
-  description: Master the fundamental rhythm of Agile delivery—with AI monitoring
-    sprint health, predicting risks, and keeping your heartbeat steady.
-  url: https://www.growingscrummasters.com/workshops/sprint-lifecycle/
-  price: 99 + VAT
-  duration: 90 Minutes
-  format: Live Online
-  level: Beginner / Intermediate
-  track: execution
-  icon: person-running-solid-full
-  benefitSummary: Establish a predictable, sustainable rhythm—with AI monitoring sprint
-    health and surfacing risks before they derail delivery.
-- slug: sprint-planning
-  title: 'Sprint Planning Mastery: From Chaos to Confidence'
-  description: Unlock the secrets of effective Sprint Planning—with AI providing capacity
-    insights, risk analysis, and data-driven forecasting.
-  url: https://www.growingscrummasters.com/workshops/sprint-planning/
-  price: 99 + VAT
-  duration: 90 Minutes
-  format: Live Online
-  level: Intermediate / Practitioner
-  track: execution
-  icon: calendar-check-solid-full
-  benefitSummary: Unlock the secrets of effective Sprint Planning—with AI providing
-    capacity insights, historical analysis, and confident forecasting.
 - slug: sprint-retrospectives
   title: 'Retrospectives Reimagined: Unlocking Team Potential'
   description: Transform your retrospectives from repetitive meetings into powerful
