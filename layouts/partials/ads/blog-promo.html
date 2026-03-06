@@ -1,7 +1,7 @@
 {{- /*
 Blog Promo Component (Shared Module)
-Displays a discrete editorial "ad" for a specific post.
-Styled with a thick left border, minimal padding, and subtle background.
+Displays a discrete editorial "ad" for a specific post with optional background image.
+Priority: 1) Target post's image field, 2) Site default, 3) No background (left-border style)
 Context: .Page (The current page) and .PromoID (The folder name/slug of the post to promote)
 */ -}}
 
@@ -19,66 +19,37 @@ Context: .Page (The current page) and .PromoID (The folder name/slug of the post
 {{ if $promos }}
 {{ $selected := index (shuffle $promos) 0 }}
 
-<aside class="blog-promo">
-    <span class="blog-promo-label">{{ $selected.label }}</span>
-    <h4 class="blog-promo-heading">{{ $selected.heading }}</h4>
-    <p class="blog-promo-copy">{{ $selected.copy }}</p>
-    <a href="{{ $selected.url }}" class="blog-promo-link">
-        {{ $selected.cta }} &rarr;
-    </a>
+{{- /* Try to find a background image */ -}}
+{{- $bgImage := "" -}}
+
+{{- /* Try /blog/ path first, then /articles/ */ -}}
+{{- $targetPost := site.GetPage (printf "/blog/%s" $promoID) -}}
+{{- if not $targetPost -}}
+    {{- $targetPost = site.GetPage (printf "/articles/%s" $promoID) -}}
+{{- end -}}
+
+{{- /* Priority 1: Target post's image field */ -}}
+{{- with $targetPost -}}
+    {{- with .Params.image -}}
+        {{- $bgImage = printf "/images/%s" . -}}
+    {{- end -}}
+{{- end -}}
+
+{{- /* Priority 2: Site default background (if exists) */ -}}
+{{- if not $bgImage -}}
+    {{- $bgImage = "/images/blog-promo-bg.jpg" -}}
+{{- end -}}
+
+<aside class="blog-promo has-bg-image" style="--promo-bg-image: url('{{ $bgImage }}')">
+    <div class="blog-promo-content">
+        <span class="blog-promo-label">{{ $selected.label }}</span>
+        <h4 class="blog-promo-heading">{{ $selected.heading }}</h4>
+        <p class="blog-promo-copy">{{ $selected.copy }}</p>
+        <a href="{{ $selected.url }}" class="blog-promo-link">
+            {{ $selected.cta }} &rarr;
+        </a>
+    </div>
 </aside>
-
-<style>
-.blog-promo {
-    border-left: 4px solid var(--primary, #3273dc);
-    background: var(--promo-bg, rgba(0, 0, 0, 0.02));
-    padding: 1rem 1.25rem;
-    margin: 2rem 0;
-    position: relative;
-}
-
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-    .blog-promo {
-        background: var(--promo-bg-dark, rgba(255, 255, 255, 0.03));
-    }
-}
-
-.blog-promo-label {
-    display: inline-block;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--primary, #3273dc);
-    margin-bottom: 0.25rem;
-}
-
-.blog-promo-heading {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin: 0 0 0.5rem 0;
-    line-height: 1.3;
-}
-
-.blog-promo-copy {
-    font-size: 0.9rem;
-    color: var(--text-muted, #666);
-    margin: 0 0 0.75rem 0;
-    line-height: 1.5;
-}
-
-.blog-promo-link {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--primary, #3273dc);
-    text-decoration: none;
-}
-
-.blog-promo-link:hover {
-    text-decoration: underline;
-}
-</style>
 
 {{ end }}
 {{ end }}
