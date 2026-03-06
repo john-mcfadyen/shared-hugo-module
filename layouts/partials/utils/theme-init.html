@@ -1,0 +1,18 @@
+{{- /*
+  Theme Init Script (FOUC Prevention)
+
+  Place this partial in <head> BEFORE any CSS loads.
+  Reads localStorage or system preference and sets data-theme on <html>
+  to prevent flash of wrong theme on page load.
+
+  Usage: {{ partial "utils/theme-init.html" . }}
+*/ -}}
+<script>
+(function() {
+  var theme = localStorage.getItem('theme');
+  if (!theme) {
+    theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  document.documentElement.setAttribute('data-theme', theme);
+})();
+</script>
